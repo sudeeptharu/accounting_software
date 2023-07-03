@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Ledger extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'group_identifier'
+    ];
 }

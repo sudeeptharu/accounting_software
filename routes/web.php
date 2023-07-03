@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LedgerClassificationController;
+use App\Http\Controllers\LedgerController;
+use App\Http\Controllers\LedgerGroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.pages.activities');
 });
+
+Route::get('ledger-classification',[LedgerClassificationController::class,'index']);
+Route::post('ledger-classification/save',[LedgerClassificationController::class,'store']);
+Route::put('ledger-classification/update',[LedgerClassificationController::class,'update']);
+Route::get('ledger-classification/delete/{id}',[LedgerClassificationController::class,'destroy']);
+
+Route::get('ledger',[LedgerController::class,'index']);
+Route::post('/ledger/save',[LedgerController::class,'create']);
+Route::put('/ledger/update',[LedgerController::class,'update']);
+Route::get('role/delete/{id}',[LedgerController::class,'destroy']);
+Route::get('/ledger/group_identifier',[LedgerController::class,'group_identifier']);
+Route::get('/ledger/classification_identifier',[LedgerController::class,'classification_identifier']);
+
+Route::get('ledger-group',[LedgerGroupController::class,'index']);
+Route::post('/ledger-group/save',[LedgerGroupController::class,'store']);
+Route::put('/ledger-group/update',[LedgerGroupController::class,'update']);
+Route::get('/ledger-group/delete/{id}',[LedgerGroupController::class,'destroy']);
