@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ledger_classifications', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('identifier');
+            $table->string('identifier')->unique();
             $table->timestamps();
         });
     }

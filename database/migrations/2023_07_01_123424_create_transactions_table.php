@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('transaction_no');
+            $table->string('voucher_type_identifier');
             $table->string('transaction_date');
             $table->text('narration')->nullable();
             $table->text('remarks')->nullable();

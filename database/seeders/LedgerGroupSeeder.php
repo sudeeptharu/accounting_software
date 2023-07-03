@@ -61,7 +61,7 @@ class LedgerGroupSeeder extends Seeder
             ['Short-term Loans','SHORT-TERM-LOANS',null,'CURRENT-LIABILITIES',null],
             ['Accrued Expenses','ACCRUED-EXPENSES',null,'CURRENT-LIABILITIES',null],
             ['Current Loans Liabilities','CURRENT-LOANS-LIABILITIES',null,'CURRENT-LIABILITIES',null],
-            ['Current Portion of Long Term Loan','BONDS-PAYABLE',null,'CURRENT-LIABILITIES',null],
+            ['Current Portion of Long Term Loan','CURRENT-PORTION-OF-LONG-TERM-LOAN',null,'CURRENT-LIABILITIES',null],
 
             ['Long-term Loans','LONG-TERM-LOANS',null,'NON-CURRENT-LIABILITIES',null],
             ['Bonds Payable','BONDS-PAYABLE',null,'NON-CURRENT-LIABILITIES',null],

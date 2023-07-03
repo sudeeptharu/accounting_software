@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ledger_groups', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('identifier');
+            $table->string('identifier')->unique();
             $table->string('classification_identifier')->nullable();
             $table->string('parent_identifier')->nullable();
             $table->string('negative_identifier')->nullable();
