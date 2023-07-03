@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ledger_classifications', function (Blueprint $table) {
+        Schema::create('voucher_types', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('identifier')->unique();
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ledger_classifications');
+        Schema::dropIfExists('voucher_types');
     }
 };

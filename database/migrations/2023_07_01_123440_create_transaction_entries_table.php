@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('transaction_id');
             $table->string('particular');
             $table->boolean('dc'); //0=D & 1=C
-            $table->decimal('amount',20,6)->unsigned();
+            $table->decimal('amount',20,8)->unsigned();
             $table->timestamps();
         });
     }

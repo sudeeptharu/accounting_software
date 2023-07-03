@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LedgerClassificationSeeder::class);
         $this->call(LedgerGroupSeeder::class);
         $this->call(LedgerSeeder::class);
+        $this->call(VoucherTypeSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
