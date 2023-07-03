@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('parent_identifier')->nullable();
             $table->string('negative_identifier')->nullable();
             $table->boolean('affects_gross_profit')->default(true);
+            $table->string('ledger_type');
             $table->timestamps();
         });
     }

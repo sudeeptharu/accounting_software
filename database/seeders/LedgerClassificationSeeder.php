@@ -16,7 +16,6 @@ class LedgerClassificationSeeder extends Seeder
         $data = [
             ['Assets','ASSETS'],
             ['Liabilities','LIABILITIES'],
-            ['Equity','EQUITY'],
             ['Income','INCOME'],
             ['Expenses','EXPENSES'],
         ];

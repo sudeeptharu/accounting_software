@@ -15,10 +15,9 @@ class LedgerTypeSeeder extends Seeder
     {
         $data = [
             ['Debtor/Creditor','DEBTOR-CREDITOR'],
-            ['Bank','BANK'],
             ['Expense','EXPENSE'],
             ['Sales','SALES'],
-            ['Cash','CASH'],
+            ['Cash & Bank','CASH-BANK'],
             ['Purchase','PURCHASE'],
             ['General','GENERAL'],
         ];
