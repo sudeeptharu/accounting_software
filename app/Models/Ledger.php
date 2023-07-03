@@ -12,4 +12,9 @@ class Ledger extends Model
         'title',
         'group_identifier'
     ];
+
+    public function group()
+    {
+        return $this->belongsTo(LedgerGroup::class,'group_identifier','identifier');
+    }
 }

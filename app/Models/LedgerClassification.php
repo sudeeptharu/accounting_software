@@ -12,4 +12,9 @@ class LedgerClassification extends Model
         'title',
         'identifier'
     ];
+
+    public function groups()
+    {
+        return $this->hasMany(LedgerGroup::class,'classification_identifier','identifier');
+    }
 }

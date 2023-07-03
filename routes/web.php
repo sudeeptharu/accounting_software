@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LedgerClassificationController;
 use App\Http\Controllers\LedgerController;
@@ -36,3 +37,8 @@ Route::get('ledger-group',[LedgerGroupController::class,'index']);
 Route::post('/ledger-group/save',[LedgerGroupController::class,'store']);
 Route::put('/ledger-group/update',[LedgerGroupController::class,'update']);
 Route::get('/ledger-group/delete/{id}',[LedgerGroupController::class,'destroy']);
+
+
+Route::get('/classification/{identifier}',[TestController::class,'classification']);
+Route::get('/group/{identifier}',[TestController::class,'group']);
+Route::get('/ledger/{identifier}',[TestController::class,'ledger']);
