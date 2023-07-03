@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LedgerClassification;
 use App\Models\LedgerGroup;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class LedgerGroupController extends Controller
      */
     public function index()
     {
-        //
+        $ledger_classifications=LedgerClassification::all();
+        $ledger_groups=LedgerGroup::all();
+        return view('dashboard.pages.ledger_groups',compact('ledger_groups','ledger_classifications'));
     }
 
     /**
@@ -20,7 +23,7 @@ class LedgerGroupController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -28,7 +31,20 @@ class LedgerGroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->validate([
+            'title' => 'required|string',
+            'identifier'=>'required|string',
+            'classification_identifier' => 'nullable|string',
+            'parent_identifier' => 'nullable|string',
+            'negative_identifier' => 'nullable|string',
+            'affects_gross_profit' => 'boolean',
+        ]);
+
+
+        LedgerGroup::create($data);
+        return redirect('ledger-group');
+
     }
 
     /**
@@ -44,7 +60,7 @@ class LedgerGroupController extends Controller
      */
     public function edit(LedgerGroup $ledgerGroup)
     {
-        //
+
     }
 
     /**
@@ -52,14 +68,28 @@ class LedgerGroupController extends Controller
      */
     public function update(Request $request, LedgerGroup $ledgerGroup)
     {
-        //
+        $id=$request->id;
+        $data = $request->validate([
+            'title' => 'required|string',
+            'identifier' => 'required|string',
+            'classification_identifier' => 'nullable|string',
+            'parent_identifier' => 'nullable|string',
+            'negative_identifier' => 'nullable|string',
+            'affects_gross_profit' => 'boolean',
+        ]);
+
+        $ledgerGroup = LedgerGroup::findOrFail($id);
+        $ledgerGroup->update($data);
+        return redirect('ledger-group');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LedgerGroup $ledgerGroup)
+    public function destroy($id)
     {
-        //
+        LedgerGroup::where(['id'=>$id])->delete();
+        return redirect('ledger-group');
     }
 }

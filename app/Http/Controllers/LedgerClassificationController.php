@@ -12,7 +12,8 @@ class LedgerClassificationController extends Controller
      */
     public function index()
     {
-        //
+        $ledgerClassifications=LedgerClassification::all();
+        return view('dashboard.pages.ledger_classification',compact('ledgerClassifications'));
     }
 
     /**
@@ -28,7 +29,12 @@ class LedgerClassificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->validate([
+           'title'=>'required|string',
+           'identifier'=>'required|string'
+        ]);
+        LedgerClassification::create($data);
+        return redirect('ledger-classification');
     }
 
     /**
@@ -52,14 +58,23 @@ class LedgerClassificationController extends Controller
      */
     public function update(Request $request, LedgerClassification $ledgerClassification)
     {
-        //
+        $id=$request->id;
+        $data=$request->validate([
+            'title'=>'required|string',
+            'identifier'=>'required|string'
+        ]);
+        $ledger = LedgerClassification::findOrFail($id);
+        $ledger->update($data);
+        return redirect('ledger-classification');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LedgerClassification $ledgerClassification)
+    public function destroy($id)
     {
-        //
+        LedgerClassification::where(['id'=>$id])->delete();
+        return redirect('ledger-classification');
     }
 }
