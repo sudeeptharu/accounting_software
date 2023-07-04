@@ -26,8 +26,12 @@ class LedgerGroup extends Model
     {
         return $this->hasMany(LedgerGroup::class,'parent_identifier','identifier');
     }
+    public function ledgers()
+    {
+        return $this->hasMany(Ledger::class, 'group_identifier', 'identifier');
+    }
     public function ledger_type()
     {
-        return $this->belongsTo(LedgerType::class,'ledger_type','identifier');
+        return $this->belongsTo(LedgerType::class, 'ledger_type','identifier');
     }
 }

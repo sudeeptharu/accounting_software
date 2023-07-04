@@ -12,5 +12,9 @@ class LedgerType extends Model
         'title',
         'identifier'
     ];
-    
+
+    public function ledger_groups()
+    {
+        return $this->hasMany(LedgerGroup::class,'ledger_type', 'identifier');
+    }
 }
