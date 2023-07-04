@@ -71,6 +71,7 @@
             </div><!-- /.container-fluid -->
         </section>
 
+
     </div>
 
     <div class="modal fade" id="add_ledger_type">

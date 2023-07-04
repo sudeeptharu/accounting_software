@@ -79,12 +79,10 @@ class LedgerTypeController extends Controller
         LedgerType::where(['id'=>$id])->delete();
         return redirect('ledger-type');
     }
-    public function getData(){
-        $data['ledger_types']=LedgerType::all();
-        foreach($data['ledger_types'] as $ledgertype){
-            $data['ledger_groups']=LedgerGroup::where(['ledger_type'=>$ledgertype->identifier]);
-        }
-        echo "<pre>";
-        print_r($data['ledger_groups']);
+    public function getData()
+    {
+        $data = LedgerType::with('ledger_groups.ledgers')->get();
+        return view('dashboard.pages.data', ['data' => $data]);
+
     }
 }
