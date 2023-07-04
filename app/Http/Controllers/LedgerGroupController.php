@@ -43,7 +43,6 @@ class LedgerGroupController extends Controller
             'parent_identifier' => 'nullable|string',
             'negative_identifier' => 'nullable|string',
             'affects_gross_profit' => 'boolean',
-            'voucher_type'=>'required',
             'ledger_type'=>'required'
         ]);
         LedgerGroup::create($data);
@@ -80,8 +79,8 @@ class LedgerGroupController extends Controller
             'parent_identifier' => 'nullable|string',
             'negative_identifier' => 'nullable|string',
             'affects_gross_profit' => 'boolean',
-            'voucher_type'=>'required',
             'ledger_type'=>'required'
+
         ]);
         $ledgerGroup = LedgerGroup::findOrFail($id);
         $ledgerGroup->update($data);
@@ -89,12 +88,10 @@ class LedgerGroupController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         LedgerGroup::where(['id'=>$id])->delete();
         return redirect('ledger-group');
     }
+
 }

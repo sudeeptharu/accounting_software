@@ -12,4 +12,5 @@ class LedgerType extends Model
         'title',
         'identifier'
     ];
+    
 }

@@ -55,3 +55,6 @@ Route::get('voucher-type',[VoucherTypeController::class,'index']);
 Route::post('voucher-type/save',[VoucherTypeController::class,'store']);
 Route::put('voucher-type/update',[VoucherTypeController::class,'update']);
 Route::get('voucher-type/delete/{id}',[VoucherTypeController::class,'destroy']);
+
+
+Route::get('getData',[LedgerTypeController::class,'getData']);

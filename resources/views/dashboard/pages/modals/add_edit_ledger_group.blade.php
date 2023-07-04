@@ -29,7 +29,7 @@
 
                 <div class="col-12">
                     <div class="form-group row">
-                        <label for="ledger_classification"> Classification Identifier </label>
+                        <label for="ledger_classification"> Classification  </label>
                         <select class="form-control" name="classification_identifier" id="classification_identifier">
                             <option value="">select one</option>
                             @foreach($ledger_classifications as $ledger_classification)
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-12">
                     <div class="form-group row">
-                        <label for="parent_identifier">parent Identifier</label>
+                        <label for="parent_identifier">Parent </label>
 
                         <select class="form-control" name="parent_identifier" id="parent_identifier">
                             <option value="">select one</option>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-12">
                     <div class="form-group row">
-                        <label for="negative_identifier">negative Identifier</label>
+                        <label for="negative_identifier">Negative </label>
 
                         <select class="form-control" name="negative_identifier" id="negative_identifier">
                             <option value="">select one</option>

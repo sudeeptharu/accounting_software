@@ -25,7 +25,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_voucher_type">
-                                    Add Ledger Type
+                                    Add Voucher Type
                                 </button>
                             </div>
                             <div class="card-body">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LedgerGroup;
 use App\Models\LedgerType;
 use Illuminate\Http\Request;
 
@@ -77,5 +78,13 @@ class LedgerTypeController extends Controller
     {
         LedgerType::where(['id'=>$id])->delete();
         return redirect('ledger-type');
+    }
+    public function getData(){
+        $data['ledger_types']=LedgerType::all();
+        foreach($data['ledger_types'] as $ledgertype){
+            $data['ledger_groups']=LedgerGroup::where(['ledger_type'=>$ledgertype->identifier]);
+        }
+        echo "<pre>";
+        print_r($data['ledger_groups']);
     }
 }

@@ -23,7 +23,7 @@
 
                 <div class="col-12">
                     <div class="form-group row">
-                        <label for="group_identifier">Group Identifier</label>
+                        <label for="group_identifier">Group </label>
 
                         <select class="form-control" name="group_identifier" id="group_identifier">
                             <option value="">Select one</option>
