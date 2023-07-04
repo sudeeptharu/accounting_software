@@ -42,3 +42,4 @@ Route::get('/ledger-group/delete/{id}',[LedgerGroupController::class,'destroy'])
 Route::get('/classification/{identifier}',[TestController::class,'classification']);
 Route::get('/group/{identifier}',[TestController::class,'group']);
 Route::get('/ledger/{identifier}',[TestController::class,'ledger']);
+Route::get('/txn/{id}',[TestController::class,'txn']);

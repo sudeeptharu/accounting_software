@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ledger;
 use App\Models\LedgerClassification;
 use App\Models\LedgerGroup;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -23,5 +24,14 @@ class TestController extends Controller
     {
         $ledger = Ledger::findOrFail($identifier);
         dd($ledger->ledger_group);
+    }
+    public function txn($id)
+    {
+        $txn = Transaction::findOrFail($id);
+        $txn_d = $txn->transaction_entries->where('dc',false)->sum('amount');
+        $txn_c = $txn->transaction_entries->where('dc',true)->sum('amount');
+        echo 'Debit: '.$txn_d;
+        echo '</br>';
+        echo 'Credit: '.$txn_c;
     }
 }

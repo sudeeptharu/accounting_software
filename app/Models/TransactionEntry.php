@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionEntry extends Model
 {
     use HasFactory;
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
 }
