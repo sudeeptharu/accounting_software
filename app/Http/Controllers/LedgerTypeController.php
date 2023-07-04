@@ -12,7 +12,8 @@ class LedgerTypeController extends Controller
      */
     public function index()
     {
-        //
+        $ledger_types=LedgerType::all();
+        return view('dashboard.pages.ledger_types',compact('ledger_types'));
     }
 
     /**
@@ -28,7 +29,13 @@ class LedgerTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->validate([
+            'title'=>'required|string',
+            'identifier'=>'required|string|unique:ledger_types'
+        ]);
+        LedgerType::create($data);
+        return redirect('ledger-type');
+
     }
 
     /**
@@ -52,14 +59,23 @@ class LedgerTypeController extends Controller
      */
     public function update(Request $request, LedgerType $ledgerType)
     {
-        //
+
+        $id=$request->id;
+        $data=$request->validate([
+            'title'=>'required|string',
+            'identifier'=>'required|string'
+        ]);
+        $ledger = LedgerType::findOrFail($id);
+        $ledger->update($data);
+        return redirect('ledger-type');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LedgerType $ledgerType)
+    public function destroy($id)
     {
-        //
+        LedgerType::where(['id'=>$id])->delete();
+        return redirect('ledger-type');
     }
 }

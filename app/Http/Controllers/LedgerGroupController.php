@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\LedgerClassification;
 use App\Models\LedgerGroup;
+use App\Models\LedgerType;
+use App\Models\VoucherType;
 use Illuminate\Http\Request;
 
 class LedgerGroupController extends Controller
@@ -14,8 +16,10 @@ class LedgerGroupController extends Controller
     public function index()
     {
         $ledger_classifications=LedgerClassification::all();
-        $ledger_groups=LedgerGroup::all();
-        return view('dashboard.pages.ledger_groups',compact('ledger_groups','ledger_classifications'));
+        $ledger_types=LedgerType::all();
+        $voucher_types=VoucherType::all();
+        $ledger_groups=LedgerGroup::with('classification')->with('parent')->with('negative_ledger')->get();
+        return view('dashboard.pages.ledger_groups',compact('ledger_groups','voucher_types','ledger_types','ledger_classifications'));
     }
 
     /**
@@ -39,9 +43,9 @@ class LedgerGroupController extends Controller
             'parent_identifier' => 'nullable|string',
             'negative_identifier' => 'nullable|string',
             'affects_gross_profit' => 'boolean',
+            'voucher_type'=>'required',
+            'ledger_type'=>'required'
         ]);
-
-
         LedgerGroup::create($data);
         return redirect('ledger-group');
 
@@ -76,8 +80,9 @@ class LedgerGroupController extends Controller
             'parent_identifier' => 'nullable|string',
             'negative_identifier' => 'nullable|string',
             'affects_gross_profit' => 'boolean',
+            'voucher_type'=>'required',
+            'ledger_type'=>'required'
         ]);
-
         $ledgerGroup = LedgerGroup::findOrFail($id);
         $ledgerGroup->update($data);
         return redirect('ledger-group');

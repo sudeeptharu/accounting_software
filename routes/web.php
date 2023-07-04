@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LedgerClassificationController;
 use App\Http\Controllers\LedgerController;
 use App\Http\Controllers\LedgerGroupController;
+use App\Http\Controllers\LedgerTypeController;
+use App\Http\Controllers\VoucherTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ use App\Http\Controllers\LedgerGroupController;
 */
 
 Route::get('/', function () {
-    return view('dashboard.pages.activities');
+    return view('welcome');
 });
 
 Route::get('ledger-classification',[LedgerClassificationController::class,'index']);
@@ -43,3 +45,13 @@ Route::get('/classification/{identifier}',[TestController::class,'classification
 Route::get('/group/{identifier}',[TestController::class,'group']);
 Route::get('/ledger/{identifier}',[TestController::class,'ledger']);
 Route::get('/txn/{id}',[TestController::class,'txn']);
+
+Route::get('ledger-type',[LedgerTypeController::class,'index']);
+Route::post('ledger-type/save',[LedgerTypeController::class,'store']);
+Route::put('ledger-type/update',[LedgerTypeController::class,'update']);
+Route::get('ledger-type/delete/{id}',[LedgerTypeController::class,'destroy']);
+
+Route::get('voucher-type',[VoucherTypeController::class,'index']);
+Route::post('voucher-type/save',[VoucherTypeController::class,'store']);
+Route::put('voucher-type/update',[VoucherTypeController::class,'update']);
+Route::get('voucher-type/delete/{id}',[VoucherTypeController::class,'destroy']);

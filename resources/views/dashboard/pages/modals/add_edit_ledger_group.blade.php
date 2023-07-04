@@ -76,6 +76,30 @@
                         </label>
                     </div>
                 </div>
+                <div class="col-12">
+                    <div class="form-group row">
+                        <label for="negative_identifier">Voucher Type</label>
+
+                        <select class="form-control" name="voucher_type" id="voucher_type">
+                            <option value="">select one</option>
+                            @foreach($voucher_types as $voucher_type)
+                                <option value="{{ $voucher_type->identifier }}">{{ $voucher_type->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group row">
+                        <label for="negative_identifier">Ledger Type</label>
+
+                        <select class="form-control" name="ledger_type" id="ledger_type">
+                            <option value="">select one</option>
+                            @foreach($ledger_types as $ledger_type)
+                                <option value="{{ $ledger_type->identifier }}">{{ $ledger_type->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 
             </div>
 
