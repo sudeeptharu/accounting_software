@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class VoucherType extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'identifier',
+        'active'
+    ];
 }

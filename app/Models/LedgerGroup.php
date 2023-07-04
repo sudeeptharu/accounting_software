@@ -8,14 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LedgerGroup extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'title',
-        'identifier',
-        'classification_identifier',
-        'parent_identifier',
-        'negative_identifier',
-        'affects_gross_profit',
-    ];
+    protected $guarded= [];
 
     public function classification()
     {

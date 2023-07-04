@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">ledger_group</h1>
+                        <h1 class="m-0">ledger Group</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -25,7 +25,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_ledger_group">
-                                    Add ledger_group
+                                    Add Ledger Group
                                 </button>
                             </div>
                             <div class="card-body">
@@ -33,10 +33,12 @@
                                     <thead>
                                     <tr class="table-info text-center">
                                         <th>Title</th>
-                                        <th>identifier</th>
-                                        <th>Classification Identifier</th>
-                                        <th>Parent Identifier</th>
-                                        <th>Negative Identifier</th>
+                                        <th>Identifier</th>
+                                        <th>Classification</th>
+                                        <th>Parent </th>
+                                        <th>Negative </th>
+                                        <th>Legder Type</th>
+                                        <th>Voucher Type</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -47,9 +49,25 @@
                                         <tr class="text-center">
                                             <td>{{$ledger_group->title}}</td>
                                             <td>{{$ledger_group->identifier}}</td>
-                                            <td>{{$ledger_group->classification_identifier}}</td>
-                                            <td>{{$ledger_group->parent_identifier}}</td>
-                                            <td>{{$ledger_group->negative_identifier}}</td>
+                                            <td>
+                                                @if ($ledger_group->classification)
+                                                    {{ $ledger_group->classification->title }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($ledger_group->parent)
+                                                    {{$ledger_group->parent->title}}
+                                                @endif
+
+                                            </td>
+                                            <td>
+
+                                                @if($ledger_group->negative_ledger)
+                                                    {{$ledger_group->negative_ledger->title}}
+                                                @endif
+                                            </td>
+                                            <td>{{$ledger_group->ledger_type}}</td>
+                                            <td>{{$ledger_group->voucher_type}}</td>
                                             <td>
 
                                                 <div class="btn-group">

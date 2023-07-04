@@ -12,7 +12,8 @@ class VoucherTypeController extends Controller
      */
     public function index()
     {
-        //
+        $voucher_types=VoucherType::all();
+        return view('dashboard.pages.voucher_types',compact('voucher_types'));
     }
 
     /**
@@ -28,7 +29,14 @@ class VoucherTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->validate([
+            'title'=>'required|string',
+            'identifier'=>'required|string|unique:voucher_types',
+            'active'=>'boolean'
+        ]);
+        $data['active']=$request->input('active',0);
+        VoucherType::create($data);
+        return redirect('voucher-type');
     }
 
     /**

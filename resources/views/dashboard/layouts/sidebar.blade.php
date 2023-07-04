@@ -32,6 +32,16 @@
                         <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Ledger Group</p>
                     </a>
                 </li>
+                </li><li class="nav-item">
+                    <a href="{{url('ledger-type')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Ledger Type</p>
+                    </a>
+                </li>
+                </li><li class="nav-item">
+                    <a href="{{url('voucher-type')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Voucher Type</p>
+                    </a>
+                </li>
 
             </ul>
         </nav>
