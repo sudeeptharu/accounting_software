@@ -38,7 +38,6 @@
                                         <th>Parent </th>
                                         <th>Negative </th>
                                         <th>Legder Type</th>
-                                        <th>Voucher Type</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -67,7 +66,6 @@
                                                 @endif
                                             </td>
                                             <td>{{$ledger_group->ledger_type}}</td>
-                                            <td>{{$ledger_group->voucher_type}}</td>
                                             <td>
 
                                                 <div class="btn-group">
