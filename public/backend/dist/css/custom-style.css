@@ -45,3 +45,7 @@ td.wrap-data {
 td.wrap-data:hover {
     overflow: visible;
 }
+.card1{
+    margin-left: 200px;
+    margin-right: 200px;
+}

@@ -40,6 +40,7 @@ class TestController extends Controller
     {
         $types = ['CASH-BANK','DEBTOR-CREDITOR'];
         $ledgers = LedgerController::ledgersByType($types)->get();
+        dd($ledgers->toArray());
         return response()->json($ledgers);
     }
 }

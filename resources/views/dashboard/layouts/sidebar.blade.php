@@ -27,23 +27,56 @@
                     <a href="{{url('ledger-classification')}}" class="nav-link">
                         <i class="fa-sharp fa-solid fa-circle-user nav-icon"></i><p>Ledger Classification</p>
                     </a>
-                </li><li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a href="{{url('ledger-group')}}" class="nav-link">
                         <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Ledger Group</p>
                     </a>
                 </li>
-                </li><li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a href="{{url('ledger-type')}}" class="nav-link">
                         <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Ledger Type</p>
                     </a>
                 </li>
-                </li><li class="nav-item">
+                <li class="nav-item">
                     <a href="{{url('voucher-type')}}" class="nav-link">
                         <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Voucher Type</p>
                     </a>
-                </li></li><li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a href="{{url('contra-voucher')}}" class="nav-link">
                         <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Contra Voucher</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('journal-voucher')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Journal Voucher</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('credit-sales-return')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Credit Sales Return</p>
+                    </a>
+                </li><li class="nav-item">
+                    <a href="{{url('debit-note-purchase')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Debit Sales Return</p>
+                    </a>
+                </li><li class="nav-item">
+                    <a href="{{url('payment-voucher')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Payment Voucher</p>
+                    </a>
+                </li><li class="nav-item">
+                    <a href="{{url('purchase-voucher')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Purchase Voucher</p>
+                    </a>
+                </li><li class="nav-item">
+                    <a href="{{url('receipt-voucher')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Receipt Voucher</p>
+                    </a>
+                </li><li class="nav-item">
+                    <a href="{{url('sales-voucher')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Sales Voucher</p>
                     </a>
                 </li>
 

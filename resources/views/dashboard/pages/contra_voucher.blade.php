@@ -2,45 +2,101 @@
 @extends('dashboard.layouts.app',['name' => 'Contra Voucher'])
 
 @section('content')
-
-    <div class="card card-primary">
+<div class="">
+    <div class="card card-secondary card1">
         <div class="card-header">
             <h3 class="card-title">Contra Voucher</h3>
         </div>
 
 
-        <form>
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+        <form class="form-horizontal"  >
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="vno">V.no</label>
+                            <input type="text" class="form-control" name="vno" id="vno"  autocomplete="off">
                         </div>
-                        <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" name="date" id="date"  autocomplete="off">
                         </div>
                     </div>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="vno">Dr</label>
+                            <select class="form-control">
+                                <option>sdfsd</option>
+                                <option>sdfshikb</option>
+                                <option>no</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+                        </div>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="vno">Cr</label>
+                            <select class="form-control">
+                                <option>sdfsd</option>
+                                <option>sdfshikb</option>
+                                <option>no</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                @php
+                    $loop=1;
+                @endphp
+                <div class="addCrBox row" id="addCrBox">
+
+                </div>
+                <div>
+                    <button type="button" id="addCr" class="btn btn-primary">add</button>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                    <div class="form-group">
+                        <label for="narration">Narration</label>
+                        <textarea class="form-control" name="narration" id="narration"></textarea>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                    <div class="form-group">
+                        <label for="remarks">Remarks</label>
+                       <textarea class="form-control" name="remarks" id="remarks"></textarea>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-lg btn-block btn-primary">Submit</button>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
         </form>
     </div>
+</div>
+
 
 @endsection

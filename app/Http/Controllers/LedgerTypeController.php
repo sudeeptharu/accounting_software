@@ -89,7 +89,31 @@ class LedgerTypeController extends Controller
 
     }
     public function contraVoucher(){
+
         return view('dashboard.pages.contra_voucher');
+    }
+    public function journalVoucher(){
+
+        return view('dashboard.pages.journal_voucher');
+    }
+    public function creditSalesReturn(){
+
+        return view('dashboard.pages.credit_note_sales_returnn');
+    }public function debitNotePurchase(){
+
+        return view('dashboard.pages.debit_note_purchase_return');
+    }public function receiptVoucher(){
+
+        return view('dashboard.pages.receipt_voucher');
+    }public function purchaseVoucher(){
+
+        return view('dashboard.pages.purchase_voucher');
+    }public function salesVoucher(){
+
+        return view('dashboard.pages.sales_voucher');
+    }public function paymentVoucher(){
+
+        return view('dashboard.pages.payment_voucher');
     }
 }
 

@@ -238,5 +238,77 @@ $(document).ready(function() {
     });
 
 });
+$("#addCr").on("click", function () {
+    document.getElementById('addCrBox').innerHTML+=`<div class="col-6">
+                        <div class="form-group">
+                            <label for="vno">Cr</label>
+                            <select class="form-control">
+                                <option>sdfsd</option>
+                                <option>sdfshikb</option>
+                                <option>no</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+                        </div>
+                    </div>`
+});
+$("#addLedger").on("click", function () {
+    document.getElementById('addLedgerBox').innerHTML+=`<div class="col-6">
+                       <div class="col-3">
+                            <div class="form-group">
+                                <label for="vno">Dr/Cr</label>
+                                <select class="form-control">
+                                    <option>Dr</option>
+                                    <option>Cr</option>
 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="vno">Ledgers</label>
+                                <select class="form-control">
+                                    <option>zdadf</option>
+                                    <option>Cr</option>
+                                    <option>Cradf</option>
+                                    <option>aaaCr</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+                            </div>
+                        </div>`
+});
+$("#addCrNoteSales").on("click", function () {
+    document.getElementById('addCrNoteSalesBox').innerHTML+=`<div class="col-6">
+                            <div class="form-group">
+                                <label for="vno">Dr</label>
+                                <select class="form-control">
+                                    <option>sdfsd</option>
+                                    <option>sdfshikb</option>
+                                    <option>no</option>
+                                </select>
+                            </div>
+                        </div>`
+});
+$("#addDrNote").on("click", function () {
+    document.getElementById('addDrNoteBox').innerHTML+=`<div class="col-6">
+                            <div class="form-group">
+                                <label for="vno">Dr</label>
+                                <select class="form-control">
+                                    <option>sdfsd</option>
+                                    <option>sdfshikb</option>
+                                    <option>no</option>
+                                </select>
+                            </div>
+                        </div>`
+});
 

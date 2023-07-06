@@ -61,3 +61,10 @@ Route::get('voucher-type/delete/{id}',[VoucherTypeController::class,'destroy']);
 
 Route::get('getData',[LedgerTypeController::class,'getData']);
 Route::get('contra-voucher',[LedgerTypeController::class,'contraVoucher']);
+Route::get('journal-voucher',[LedgerTypeController::class,'journalVoucher']);
+Route::get('payment-voucher',[LedgerTypeController::class,'paymentVoucher']);
+Route::get('purchase-voucher',[LedgerTypeController::class,'purchaseVoucher']);
+Route::get('receipt-voucher',[LedgerTypeController::class,'receiptVoucher']);
+Route::get('sales-voucher',[LedgerTypeController::class,'salesVoucher']);
+Route::get('credit-sales-return',[LedgerTypeController::class,'creditSalesReturn']);
+Route::get('debit-note-purchase',[LedgerTypeController::class,'debitNotePurchase']);
