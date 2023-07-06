@@ -17,4 +17,11 @@ class LedgerType extends Model
     {
         return $this->hasMany(LedgerGroup::class,'ledger_type', 'identifier');
     }
+
+    public function getLedgersAttribute()
+    {
+        return Ledger::with('group.ledger_type')->whereHas('group', function ($query) {
+                $query->where('ledger_type', $this->identifier);
+            })->get();
+    }
 }

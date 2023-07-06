@@ -40,11 +40,13 @@ Route::post('/ledger-group/save',[LedgerGroupController::class,'store']);
 Route::put('/ledger-group/update',[LedgerGroupController::class,'update']);
 Route::get('/ledger-group/delete/{id}',[LedgerGroupController::class,'destroy']);
 
-
+/*Tests*/
 Route::get('/classification/{identifier}',[TestController::class,'classification']);
 Route::get('/group/{identifier}',[TestController::class,'group']);
 Route::get('/ledger/{identifier}',[TestController::class,'ledger']);
 Route::get('/txn/{id}',[TestController::class,'txn']);
+Route::get('/ledgertype',[TestController::class,'ledgers_by_type']);
+/*Tests*/
 
 Route::get('ledger-type',[LedgerTypeController::class,'index']);
 Route::post('ledger-type/save',[LedgerTypeController::class,'store']);
