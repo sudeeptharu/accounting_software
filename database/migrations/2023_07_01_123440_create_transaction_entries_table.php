@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transaction_entries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaction_id');
-            $table->string('particular');
+            $table->foreignId('ledger_id');
             $table->boolean('dc'); //0=D & 1=C
             $table->decimal('amount',20,8)->unsigned();
             $table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ledger;
 use App\Models\LedgerClassification;
 use App\Models\LedgerGroup;
+use App\Models\LedgerType;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -33,5 +34,12 @@ class TestController extends Controller
         echo 'Debit: '.$txn_d;
         echo '</br>';
         echo 'Credit: '.$txn_c;
+    }
+
+    public function ledgers_by_type()
+    {
+        $types = ['CASH-BANK','DEBTOR-CREDITOR'];
+        $ledgers = LedgerController::ledgersByType($types)->get();
+        return response()->json($ledgers);
     }
 }

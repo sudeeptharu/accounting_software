@@ -91,4 +91,20 @@ class LedgerController extends Controller
         Ledger::where(['id'=>$id])->delete();
         return redirect('ledger');
     }
+
+    public static function ledgersByType($ledgerTypes = null)
+    {
+        if ($ledgerTypes != null)
+        {
+
+            return Ledger::with('group.ledger_type')
+                ->whereHas('group.ledger_type', function ($query) use ($ledgerTypes) {
+                    $query->whereIn('ledger_type', $ledgerTypes);
+                });
+        }
+        else
+        {
+            return Ledger::all();
+        }
+    }
 }
