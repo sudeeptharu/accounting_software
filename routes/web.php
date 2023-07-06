@@ -58,3 +58,4 @@ Route::get('voucher-type/delete/{id}',[VoucherTypeController::class,'destroy']);
 
 
 Route::get('getData',[LedgerTypeController::class,'getData']);
+Route::get('contra-voucher',[LedgerTypeController::class,'contraVoucher']);

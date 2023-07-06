@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LedgerGroup;
 use App\Models\LedgerType;
+use App\Models\Ledger;
 use Illuminate\Http\Request;
 
 class LedgerTypeController extends Controller
@@ -13,7 +14,7 @@ class LedgerTypeController extends Controller
      */
     public function index()
     {
-        $ledger_types=LedgerType::all();
+        $ledger_types= LedgerType::with('ledger_groups.ledgers')->get();
         return view('dashboard.pages.ledger_types',compact('ledger_types'));
     }
 
@@ -81,8 +82,14 @@ class LedgerTypeController extends Controller
     }
     public function getData()
     {
+
+
         $data = LedgerType::with('ledger_groups.ledgers')->get();
         return view('dashboard.pages.data', ['data' => $data]);
 
     }
+    public function contraVoucher(){
+        return view('dashboard.pages.contra_voucher');
+    }
 }
+

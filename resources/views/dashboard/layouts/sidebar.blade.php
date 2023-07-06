@@ -41,6 +41,10 @@
                     <a href="{{url('voucher-type')}}" class="nav-link">
                         <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Voucher Type</p>
                     </a>
+                </li></li><li class="nav-item">
+                    <a href="{{url('contra-voucher')}}" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-inbox nav-icon"></i><p>Contra Voucher</p>
+                    </a>
                 </li>
 
             </ul>

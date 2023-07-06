@@ -34,6 +34,7 @@
                                     <tr class="table-info text-center">
                                         <th>Title</th>
                                         <th>Identifier</th>
+                                        <th>Dropdown</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -44,6 +45,15 @@
                                         <tr class="text-center">
                                             <td>{{$ledger_type->title}}</td>
                                             <td>{{$ledger_type->identifier}}</td>
+                                            <td>
+                                                <select>
+                                                    @foreach($ledger_type->ledger_groups as $ledgergroup)
+                                                        @foreach($ledgergroup->ledgers as $ledgers)
+                                                            <option>{{$ledgers->title}}</option>
+                                                        @endforeach
+                                                    @endforeach
+                                                </select>
+                                            </td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="#" data-toggle="modal" data-target="#edit_ledger_type"
