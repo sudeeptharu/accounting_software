@@ -39,7 +39,7 @@ class TestController extends Controller
     public function ledgers_by_type()
     {
         $types = ['CASH-BANK','DEBTOR-CREDITOR'];
-        $ledgers = LedgerController::ledgersByType($types);
+        $ledgers = LedgerController::ledgersByType($types)->get();
         return response()->json($ledgers);
     }
 }

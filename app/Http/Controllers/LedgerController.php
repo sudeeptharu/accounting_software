@@ -100,8 +100,7 @@ class LedgerController extends Controller
             return Ledger::with('group.ledger_type')
                 ->whereHas('group.ledger_type', function ($query) use ($ledgerTypes) {
                     $query->whereIn('ledger_type', $ledgerTypes);
-                })
-                ->get();
+                });
         }
         else
         {
