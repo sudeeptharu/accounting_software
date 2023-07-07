@@ -29,8 +29,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="vno">Dr</label>
-                            <select class="form-control dr-cr-selector" data-action="CASH,BANK">
-
+                            <select class="form-control ledger-selector" data-action="CASH,BANK">
                             </select>
                         </div>
                     </div>
@@ -45,7 +44,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="vno">Cr</label>
-                            <select class="form-control dr-cr-selector" data-action="CASH,BANK">
+                            <select class="form-control ledger-selector" data-action="CASH,BANK">
                             </select>
                         </div>
                     </div>

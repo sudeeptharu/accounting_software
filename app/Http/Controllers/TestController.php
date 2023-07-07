@@ -40,7 +40,14 @@ class TestController extends Controller
     public function ledgers_by_type(Request $request)
     {
         $types = $request->types;
-        $ledgers = LedgerController::ledgersByType($types)->get();
+        if ($types == null)
+        {
+            $ledgers = Ledger::all();
+        }else
+        {
+            $ledgers = LedgerController::ledgersByType($types)->get();
+        }
+
         return LedgerResource::collection($ledgers);
     }
 }
