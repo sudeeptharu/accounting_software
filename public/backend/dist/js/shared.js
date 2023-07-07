@@ -382,8 +382,7 @@ $(document).ready(function() {
 
     function getDataFromAttribute() {
         const dataAction = selectElement.attr('data-action');
-        if (dataAction === "")
-        {
+        if (dataAction === "") {
             types = null
             $.ajax({
                 url: "/ledgerbytype",
@@ -391,7 +390,29 @@ $(document).ready(function() {
                 success: function (data, textStatus, xhr) {
                     if (xhr.status === 200) {
 
-                        data.data.forEach((ledger)=>{
+                        data.data.forEach((ledger) => {
+                            let optionTag = $("<option>")
+                            optionTag.prop({
+                                value: ledger.id,
+                                text: ledger.title
+                            })
+                            optionTag.appendTo(selectElement);
+                        })
+                    }
+                },
+            });
+        } else {
+            types = dataAction.split(',');
+            $.ajax({
+                url: "/ledgerbytype",
+                type: "get",
+                data: {
+                    types: types,
+                },
+                success: function (data, textStatus, xhr) {
+                    if (xhr.status === 200) {
+
+                        data.data.forEach((ledger) => {
                             let optionTag = $("<option>")
                             optionTag.prop({
                                 value: ledger.id,
@@ -403,33 +424,11 @@ $(document).ready(function() {
                 },
             });
         }
-        else
-        {
-            types = dataAction.split(',');
-            $.ajax({
-                url: "/ledgerbytype",
-                type: "get",
-                data: {
-                    types: types,
-                },
-                success: function (data, textStatus, xhr) {
-                    if (xhr.status === 200) {
 
-                    data.data.forEach((ledger)=>{
-                        let optionTag = $("<option>")
-                        optionTag.prop({
-                            value: ledger.id,
-                            text: ledger.title
-                        })
-                        optionTag.appendTo(selectElement);
-                    })
-                }
-            },
-        });
+        getDataFromAttribute();
     }
-
-    getDataFromAttribute();
 });
+
 
 $("#addCrNoteSales").on("click", function () {
     var deleteBtn=document.createElement('button');
@@ -486,6 +485,7 @@ $("#addDrNote").on("click", function () {
     newbox.appendChild(deleteBtn);
 
     document.getElementById('addDrNoteBox').append(newbox);
+
 });
 
 
