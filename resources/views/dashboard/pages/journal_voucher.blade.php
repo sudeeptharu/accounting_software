@@ -38,11 +38,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="vno">Ledgers</label>
-                                <select class="form-control">
-                                    <option>zdadf</option>
-                                    <option>Cr</option>
-                                    <option>Cradf</option>
-                                    <option>aaaCr</option>
+                                <select class="form-control ledger-selector" data-action=" ">
 
                                 </select>
                             </div>

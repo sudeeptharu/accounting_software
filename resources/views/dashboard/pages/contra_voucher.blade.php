@@ -45,6 +45,7 @@
                         <div class="form-group">
                             <label for="vno">Cr</label>
                             <select class="form-control ledger-selector" data-action="CASH,BANK">
+
                             </select>
                         </div>
                     </div>

@@ -136,20 +136,6 @@ $(function () {
         });
     });
 
-    $("#edit_fiscal_year").on("shown.bs.modal", function (e) {
-        const modal = $(this);
-        const link = $(e.relatedTarget);
-        const id = link.data("id");
-        const year = link.data("year");
-        const active = link.data("active");
-
-        modal.find(".modal-body #id").val(id);
-        modal.find(".modal-body #year").val(year);
-        active && modal.find(".modal-body #active_edit").prop("checked", true);
-        !active &&
-            modal.find(".modal-body #active_edit").prop("checked", false);
-    });
-
     $("#edit_ledger_classification").on("shown.bs.modal", function (e) {
         const modal = $(this);
         const link = $(e.relatedTarget);
@@ -173,53 +159,6 @@ $(function () {
         modal.find(".modal-body #identifier").val(identifier);
     });
 
-    $("#add-attachment").on("click", function () {
-        if ($("#attachments-main :last-child").children().length < 1) {
-            add_attachment_row();
-        } else if (
-            $("#attachments-main :last-child").find(".gallery-photo-add").get(0)
-                .files.length === 0
-        ) {
-            toastr.error("Please select a File on empty box !!!");
-        } else {
-            add_attachment_row();
-        }
-    });
-
-    $("#edit_open_ticket").on("shown.bs.modal", function (e) {
-        const modal = $(this);
-        const link = $(e.relatedTarget);
-        const id = link.data("id");
-        const category_id = link.data("category");
-
-        modal.find(".modal-body #id").val(id);
-
-        modal
-            .find(".modal-body #open_ticket_model_category")
-            .empty()
-            .trigger("change");
-
-        $.ajax({
-            url: "/dashboard/category-name",
-            type: "get",
-            success: function (response) {
-                response.forEach(function (data) {
-                    modal
-                        .find(".modal-body #open_ticket_model_category")
-                        .append(
-                            $("<option>", {
-                                value: data.id,
-                                text: data.name,
-                            })
-                        );
-                    modal
-                        .find(".modal-body #open_ticket_model_category")
-                        .val(category_id)
-                        .trigger("change");
-                });
-            },
-        });
-    });
 });
 
 $(document).ready(function() {
@@ -239,46 +178,7 @@ $(document).ready(function() {
 
 });
 
-$("#addCr").on("click", function () {
-    var deleteBtn = document.createElement('button');
-    deleteBtn.innerText = 'Delete';
-    deleteBtn.classList.add('deleteBtn');
-    deleteBtn.classList.add('btn');
-    deleteBtn.classList.add('btn-danger');
-    deleteBtn.addEventListener('click', function () {
-        this.parentNode.remove();
-    });
 
-    var newCrDiv = document.createElement('div');
-    newCrDiv.classList.add('col-6');
-    newCrDiv.innerHTML = `
-        <div class="form-group">
-            <label for="vno">Cr</label>
-            <select class="form-control">
-                <option>sdfsd</option>
-                <option>sdfshikb</option>
-                <option>no</option>
-            </select>
-        </div>
-    `;
-
-    var newAmountDiv = document.createElement('div');
-    newAmountDiv.classList.add('col-6');
-    newAmountDiv.innerHTML = `
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
-        </div>
-    `;
-
-    var newCrBox = document.createElement('div');
-    newCrBox.classList.add('addCrBox', 'row');
-    newCrBox.appendChild(newCrDiv);
-    newCrBox.appendChild(newAmountDiv);
-    newCrBox.appendChild(deleteBtn);
-
-    document.getElementById('addCrBox').appendChild(newCrBox);
-});
 $("#addDr").on("click", function () {
     var deleteBtn = document.createElement('button');
     deleteBtn.innerText = 'Delete';
@@ -382,53 +282,163 @@ $(document).ready(function() {
 
     function getDataFromAttribute() {
         const dataAction = selectElement.attr('data-action');
-        if (dataAction === "") {
-            types = null
-            $.ajax({
-                url: "/ledgerbytype",
-                type: "get",
-                success: function (data, textStatus, xhr) {
-                    if (xhr.status === 200) {
+        types = dataAction.split(',');
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: types,
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
 
-                        data.data.forEach((ledger) => {
-                            let optionTag = $("<option>")
-                            optionTag.prop({
-                                value: ledger.id,
-                                text: ledger.title
-                            })
-                            optionTag.appendTo(selectElement);
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
                         })
-                    }
-                },
-            });
-        } else {
-            types = dataAction.split(',');
-            $.ajax({
-                url: "/ledgerbytype",
-                type: "get",
-                data: {
-                    types: types,
-                },
-                success: function (data, textStatus, xhr) {
-                    if (xhr.status === 200) {
-
-                        data.data.forEach((ledger) => {
-                            let optionTag = $("<option>")
-                            optionTag.prop({
-                                value: ledger.id,
-                                text: ledger.title
-                            })
-                            optionTag.appendTo(selectElement);
-                        })
-                    }
-                },
-            });
+                        optionTag.appendTo(selectElement);
+                    })
+                }
+            },
+        });
     }
 
     getDataFromAttribute();
-        getDataFromAttribute();
-    }
 });
+
+
+
+$("#addCr").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.classList.add('btn');
+    deleteBtn.classList.add('btn-danger');
+    deleteBtn.addEventListener('click', function () {
+        this.parentNode.remove();
+    });
+
+    var newCrDiv = document.createElement('div');
+    newCrDiv.classList.add('col-6');
+    newCrDiv.innerHTML = `
+        <div class="form-group">
+            <label for="vno">Cr</label>
+            <select class="form-control  ledger-selector" data-action="CASH,BANK">
+
+            </select>
+        </div>
+    `;
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-6');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+        </div>
+    `;
+
+    var newCrBox = document.createElement('div');
+    newCrBox.classList.add('addCrBox', 'row');
+    newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(newAmountDiv);
+    newCrBox.appendChild(deleteBtn);
+
+    document.getElementById('addCrBox').appendChild(newCrBox);
+    const selectElement = $('.ledger-selector');
+
+    function getDataFromAttribute() {
+        const dataAction = selectElement.attr('data-action');
+        types = dataAction.split(',');
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: types,
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(newCrDiv);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+    // var newSelectElement = newCrBox.querySelector('.ledger-selector');
+    // getDataFromAttribute2(newSelectElement);
+    // const selectElement = $('.ledger-selector');
+    //
+    // function getDataFromAttribute() {
+    //     const dataAction = selectElement.attr('data-action');
+    //     types = dataAction.split(',');
+    //     $.ajax({
+    //         url: "/ledgerbytype",
+    //         type: "get",
+    //         data: {
+    //             types: types,
+    //         },
+    //         success: function (data, textStatus, xhr) {
+    //             if (xhr.status === 200) {
+    //
+    //                 data.data.forEach((ledger)=>{
+    //                     let optionTag = $("<option>")
+    //                     optionTag.prop({
+    //                         value: ledger.id,
+    //                         text: ledger.title
+    //                     })
+    //                     optionTag.appendTo(selectElement);
+    //                 })
+    //             }
+    //         },
+    //     });
+    // }
+    //
+    // getDataFromAttribute();
+});
+    // const selectElements = $('.ledger-selector');
+    //
+    // function getDataFromAttribute2(selectElement) {
+    //     const dataAction = selectElement.attr('action');
+    //     types = dataAction.split(',');
+    //     $.ajax({
+    //         url: "/ledgerbytype",
+    //         type: "get",
+    //         data: {
+    //             types: types,
+    //         },
+    //         success: function (data, textStatus, xhr) {
+    //             if (xhr.status === 200) {
+    //                 selectElement.empty(); // Clear existing options
+    //
+    //                 data.data.forEach((ledger)=>{
+    //                     let optionTag = $("<option>")
+    //                     optionTag.prop({
+    //                         value: ledger.id,
+    //                         text: ledger.title
+    //                     })
+    //                     optionTag.appendTo(selectElement);
+    //                 });
+    //             }
+    //         },
+    //     });
+    // }
+    //
+    // selectElements.each(function() {
+    //     getDataFromAttribute2($(this));
+    // });
+
+
 
 
 $("#addCrNoteSales").on("click", function () {
@@ -486,7 +496,25 @@ $("#addDrNote").on("click", function () {
     newbox.appendChild(deleteBtn);
 
     document.getElementById('addDrNoteBox').append(newbox);
-
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

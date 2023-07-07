@@ -28,10 +28,8 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="vno">Cr</label>
-                                <select class="form-control">
-                                    <option>sdfsd</option>
-                                    <option>sdfshikb</option>
-                                    <option>no</option>
+                                <select class="form-control ledger-selector" data-action="DEBTOR-CREDITOR,CASH,BANK">
+
                                 </select>
                             </div>
                         </div>
@@ -46,10 +44,8 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="vno">Dr</label>
-                                <select class="form-control">
-                                    <option>sdfsd</option>
-                                    <option>sdfshikb</option>
-                                    <option>no</option>
+                                <select class="form-control ledger-selector" data-action="SALES,TAX">
+
                                 </select>
                             </div>
                         </div>

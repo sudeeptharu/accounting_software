@@ -25,38 +25,44 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-1">
+                            <select class="form-control" disabled>
+                                <option >Dr</option>
+                                <option selected>Cr</option>
+
+                            </select>
+                        </div>
+                        <div class="col-5">
                             <div class="form-group">
-                                <label for="vno">Cr</label>
-                                <select class="form-control">
-                                    <option>sdfsd</option>
-                                    <option>sdfshikb</option>
-                                    <option>no</option>
+                                <select class="form-control ledger-selector" data-action="DEBTOR-CREDITOR">
+
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="amount">Amount</label>
-                                <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+                                <input type="text" class="form-control" name="amount" id="amount"placeholder="Amount"  autocomplete="off">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-1">
+                            <select class="form-control" disabled>
+                                <option selected >Dr</option>
+                                <option >Cr</option>
+
+                            </select>
+                        </div>
+                        <div class="col-5">
                             <div class="form-group">
-                                <label for="vno">Dr</label>
-                                <select class="form-control">
-                                    <option>sdfsd</option>
-                                    <option>sdfshikb</option>
-                                    <option>no</option>
+                                <select class="form-control ledger-selector" data-action="CASH,BANK">
+
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="amount">Amount</label>
-                                <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+                                <input type="text" class="form-control" name="amount" id="amount"placeholder="Amount"  autocomplete="off">
                             </div>
                         </div>
                     </div>
