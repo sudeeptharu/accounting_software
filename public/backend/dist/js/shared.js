@@ -312,32 +312,57 @@ $("#addDrNote").on("click", function () {
                         </div>`
 });
 $(document).ready(function() {
-    const selectElement = $('.dr-cr-selector');
+    const selectElement = $('.ledger-selector');
 
     function getDataFromAttribute() {
         const dataAction = selectElement.attr('data-action');
-        types = dataAction.split(',');
+        if (dataAction === "")
+        {
+            types = null
+            $.ajax({
+                url: "/ledgerbytype",
+                type: "get",
+                success: function (data, textStatus, xhr) {
+                    if (xhr.status === 200) {
 
-        $.ajax({
-            url: "/ledgerbytype",
-            type: "get",
-            data: {
-                types: types,
-            },
-            success: function (data, textStatus, xhr) {
-                if (xhr.status === 200) {
-
-                    data.data.forEach((ledger)=>{
-                        let optionTag = $("<option>")
-                        optionTag.prop({
-                            value: ledger.id,
-                            text: ledger.title
+                        data.data.forEach((ledger)=>{
+                            let optionTag = $("<option>")
+                            optionTag.prop({
+                                value: ledger.id,
+                                text: ledger.title
+                            })
+                            optionTag.appendTo(selectElement);
                         })
-                        optionTag.appendTo(selectElement);
-                    })
-                }
-            },
-        });
+                    }
+                },
+            });
+        }
+        else
+        {
+            types = dataAction.split(',');
+            $.ajax({
+                url: "/ledgerbytype",
+                type: "get",
+                data: {
+                    types: types,
+                },
+                success: function (data, textStatus, xhr) {
+                    if (xhr.status === 200) {
+
+                        data.data.forEach((ledger)=>{
+                            let optionTag = $("<option>")
+                            optionTag.prop({
+                                value: ledger.id,
+                                text: ledger.title
+                            })
+                            optionTag.appendTo(selectElement);
+                        })
+                    }
+                },
+            });
+        }
+
+
     }
 
     getDataFromAttribute();
