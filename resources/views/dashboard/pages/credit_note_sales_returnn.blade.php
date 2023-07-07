@@ -1,10 +1,10 @@
-@extends('dashboard.layouts.app',['name' => 'Voucher Type'])
+@extends('dashboard.layouts.app',['name' => 'Credit Note Sale Return'])
 
 @section('content')
     <div class="">
         <div class="card card-secondary card1">
             <div class="card-header">
-                <h3 class="card-title">Contra Voucher</h3>
+                <h3 class="card-title">Credit Note Sale Return</h3>
             </div>
 
 
@@ -56,7 +56,7 @@
 
                     </div>
 
-                    <div class="addCrNoteSalesBox row" id="addCrNoteSalesBox">
+                    <div class="addCrNoteSalesBox " id="addCrNoteSalesBox">
 
                     </div>
                     <div>

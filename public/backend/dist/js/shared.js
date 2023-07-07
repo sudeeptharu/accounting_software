@@ -238,8 +238,91 @@ $(document).ready(function() {
     });
 
 });
+
 $("#addCr").on("click", function () {
-    document.getElementById('addCrBox').innerHTML+=`<div class="col-6">
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.classList.add('btn');
+    deleteBtn.classList.add('btn-danger');
+    deleteBtn.addEventListener('click', function () {
+        this.parentNode.remove();
+    });
+
+    var newCrDiv = document.createElement('div');
+    newCrDiv.classList.add('col-6');
+    newCrDiv.innerHTML = `
+        <div class="form-group">
+            <label for="vno">Cr</label>
+            <select class="form-control">
+                <option>sdfsd</option>
+                <option>sdfshikb</option>
+                <option>no</option>
+            </select>
+        </div>
+    `;
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-6');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+        </div>
+    `;
+
+    var newCrBox = document.createElement('div');
+    newCrBox.classList.add('addCrBox', 'row');
+    newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(newAmountDiv);
+    newCrBox.appendChild(deleteBtn);
+
+    document.getElementById('addCrBox').appendChild(newCrBox);
+});
+$("#addDr").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.classList.add('btn');
+    deleteBtn.classList.add('btn-danger');
+    deleteBtn.addEventListener('click', function () {
+        this.parentNode.remove();
+    });
+
+    var newDrDiv = document.createElement('div');
+    newDrDiv.classList.add('col-6');
+    newDrDiv.innerHTML = `
+        <div class="form-group">
+            <label for="vno">Dr</label>
+            <select class="form-control">
+                <option>sdfsd</option>
+                <option>sdfshikb</option>
+                <option>no</option>
+            </select>
+        </div>
+    `;
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-6');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+        </div>
+    `;
+
+    var newDrBox = document.createElement('div');
+    newDrBox.classList.add('addCrBox', 'row');
+    newDrBox.appendChild(newDrDiv);
+    newDrBox.appendChild(newAmountDiv);
+    newDrBox.appendChild(deleteBtn);
+
+    document.getElementById('addDrBox').appendChild(newDrBox);
+});
+
+
+$("#payment").on("click", function () {
+    document.getElementById('paymentBox').innerHTML+=`<div class="col-6">
                         <div class="form-group">
                             <label for="vno">Cr</label>
                             <select class="form-control">
@@ -256,9 +339,18 @@ $("#addCr").on("click", function () {
                         </div>
                     </div>`
 });
+
 $("#addLedger").on("click", function () {
-    document.getElementById('addLedgerBox').innerHTML+=`<div class="col-6">
-                       <div class="col-3">
+    var deleteBtn=document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('btn','btn-danger');
+    deleteBtn.addEventListener('click',function (){
+        this.parentNode.remove()
+    })
+
+    var newDrCrDiv=document.createElement('div');
+    newDrCrDiv.classList.add('col-3')
+    newDrCrDiv.innerHTML=`
                             <div class="form-group">
                                 <label for="vno">Dr/Cr</label>
                                 <select class="form-control">
@@ -266,9 +358,10 @@ $("#addLedger").on("click", function () {
                                     <option>Cr</option>
 
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-3">
+                            </div>`;
+    var newLedger=document.createElement('div');
+    newLedger.classList.add('col-3')
+    newLedger.innerHTML=`
                             <div class="form-group">
                                 <label for="vno">Ledgers</label>
                                 <select class="form-control">
@@ -278,17 +371,42 @@ $("#addLedger").on("click", function () {
                                     <option>aaaCr</option>
 
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="amount">Amount</label>
-                                <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
-                            </div>
-                        </div>`
+                            </div>`;
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-6');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+        </div>
+    `;
+
+    var newLedgerBox = document.createElement('div');
+    newLedgerBox.classList.add('row');
+    newLedgerBox.appendChild(newDrCrDiv);
+    newLedgerBox.appendChild(newLedger);
+    newLedgerBox.appendChild(newAmountDiv);
+    newLedgerBox.appendChild(deleteBtn);
+
+
+    document.getElementById('addLedgerBox').appendChild(newLedgerBox);
+
+
+
 });
+
 $("#addCrNoteSales").on("click", function () {
-    document.getElementById('addCrNoteSalesBox').innerHTML+=`<div class="col-6">
+    var deleteBtn=document.createElement('button');
+    deleteBtn.innerText='delete';
+    deleteBtn.classList.add("btn",'btn-danger');
+    deleteBtn.addEventListener('click',function (){
+        this.parentNode.remove();
+    })
+
+    var addDr=document.createElement('div');
+    addDr.classList.add('col-6');
+    addDr.innerHTML=`
                             <div class="form-group">
                                 <label for="vno">Dr</label>
                                 <select class="form-control">
@@ -297,18 +415,42 @@ $("#addCrNoteSales").on("click", function () {
                                     <option>no</option>
                                 </select>
                             </div>
-                        </div>`
+    `;
+
+    var newbox=document.createElement('div');
+    newbox.classList.add('row');
+    newbox.appendChild(addDr);
+    newbox.appendChild(deleteBtn);
+
+    document.getElementById('addCrNoteSalesBox').append(newbox);
 });
 $("#addDrNote").on("click", function () {
-    document.getElementById('addDrNoteBox').innerHTML+=`<div class="col-6">
+    var deleteBtn=document.createElement('button');
+    deleteBtn.innerText='delete';
+    deleteBtn.classList.add("btn",'btn-danger');
+    deleteBtn.addEventListener('click',function (){
+        this.parentNode.remove();
+    })
+
+    var addCr=document.createElement('div');
+    addCr.classList.add('col-6');
+    addCr.innerHTML=`
                             <div class="form-group">
-                                <label for="vno">Dr</label>
+                                <label for="vno">Cr</label>
                                 <select class="form-control">
                                     <option>sdfsd</option>
                                     <option>sdfshikb</option>
                                     <option>no</option>
                                 </select>
                             </div>
-                        </div>`
+    `;
+
+    var newbox=document.createElement('div');
+    newbox.classList.add('row');
+    newbox.appendChild(addCr);
+    newbox.appendChild(deleteBtn);
+
+    document.getElementById('addDrNoteBox').append(newbox);
 });
+
 

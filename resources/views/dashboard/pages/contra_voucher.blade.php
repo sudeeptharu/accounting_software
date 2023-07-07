@@ -61,14 +61,14 @@
                         </div>
                     </div>
                 </div>
-                @php
-                    $loop=1;
-                @endphp
-                <div class="addCrBox row" id="addCrBox">
+
+                <div class="addCrBox " id="addCrBox">
 
                 </div>
-                <div>
+                <div class="row">
+                <div class="col-12">
                     <button type="button" id="addCr" class="btn btn-primary">add</button>
+                </div>
                 </div>
                 <div class="row">
                     <div class="col-12">

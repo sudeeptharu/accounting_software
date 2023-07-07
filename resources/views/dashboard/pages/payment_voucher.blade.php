@@ -1,10 +1,10 @@
-@extends('dashboard.layouts.app',['name' => 'Voucher Type'])
+@extends('dashboard.layouts.app',['name' => 'Payment Voucher'])
 
 @section('content')
     <div class="">
         <div class="card card-secondary card1">
             <div class="card-header">
-                <h3 class="card-title">Contra Voucher</h3>
+                <h3 class="card-title">Payment Voucher</h3>
             </div>
 
 
@@ -63,7 +63,7 @@
                     @php
                         $loop=1;
                     @endphp
-                    <div class="pymentBox row" id="pymentBox">
+                    <div class="addCrBox " id="addCrBox">
 
                     </div>
                     <div>

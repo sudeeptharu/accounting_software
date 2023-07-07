@@ -4,7 +4,7 @@
     <div class="">
         <div class="card card-secondary card1">
             <div class="card-header">
-                <h3 class="card-title">Contra Voucher</h3>
+                <h3 class="card-title">Debit Note Purchase Return</h3>
             </div>
 
 
@@ -56,7 +56,7 @@
 
                     </div>
 
-                    <div class="addDrNoteBox row" id="addDrNoteBox">
+                    <div class="addDrNoteBox " id="addDrNoteBox">
 
                     </div>
                     <div>

@@ -1,10 +1,10 @@
-@extends('dashboard.layouts.app',['name' => 'Voucher Type'])
+@extends('dashboard.layouts.app',['name' => 'Receipt Voucher'])
 
 @section('content')
     <div class="">
         <div class="card card-secondary card1">
             <div class="card-header">
-                <h3 class="card-title">Contra Voucher</h3>
+                <h3 class="card-title">Receipt Voucher</h3>
             </div>
 
 
@@ -25,25 +25,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="vno">Dr/Cr</label>
+                                <label for="vno">Cr</label>
                                 <select class="form-control">
-                                    <option>Dr</option>
-                                    <option>Cr</option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="vno">Ledgers</label>
-                                <select class="form-control">
-                                    <option>zdadf</option>
-                                    <option>Cr</option>
-                                    <option>Cradf</option>
-                                    <option>aaaCr</option>
-
+                                    <option>sdfsd</option>
+                                    <option>sdfshikb</option>
+                                    <option>no</option>
                                 </select>
                             </div>
                         </div>
@@ -53,14 +41,33 @@
                                 <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
                             </div>
                         </div>
-
                     </div>
-
-                    <div class="addLedgerBox row" id="addLedgerBox">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="vno">Dr</label>
+                                <select class="form-control">
+                                    <option>sdfsd</option>
+                                    <option>sdfshikb</option>
+                                    <option>no</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    @php
+                        $loop=1;
+                    @endphp
+                    <div class="addDrBox " id="addDrBox">
 
                     </div>
                     <div>
-                        <button type="button" id="addLedgerBox" class="btn btn-primary">add</button>
+                        <button type="button" id="addDr" class="btn btn-primary">add</button>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -89,6 +96,7 @@
             </form>
         </div>
     </div>
+
 
 
 @endsection
