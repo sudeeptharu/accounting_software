@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\LedgerResource;
 use App\Models\Ledger;
 use App\Models\LedgerClassification;
 use App\Models\LedgerGroup;
@@ -36,11 +37,10 @@ class TestController extends Controller
         echo 'Credit: '.$txn_c;
     }
 
-    public function ledgers_by_type()
+    public function ledgers_by_type(Request $request)
     {
-        $types = ['CASH-BANK','DEBTOR-CREDITOR'];
+        $types = $request->types;
         $ledgers = LedgerController::ledgersByType($types)->get();
-        dd($ledgers->toArray());
-        return response()->json($ledgers);
+        return LedgerResource::collection($ledgers);
     }
 }

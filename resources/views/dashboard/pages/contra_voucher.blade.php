@@ -29,10 +29,8 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="vno">Dr</label>
-                            <select class="form-control">
-                                <option>sdfsd</option>
-                                <option>sdfshikb</option>
-                                <option>no</option>
+                            <select class="form-control dr-cr-selector" data-action="CASH,BANK">
+
                             </select>
                         </div>
                     </div>
@@ -47,10 +45,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="vno">Cr</label>
-                            <select class="form-control">
-                                <option>sdfsd</option>
-                                <option>sdfshikb</option>
-                                <option>no</option>
+                            <select class="form-control dr-cr-selector" data-action="CASH,BANK">
                             </select>
                         </div>
                     </div>
