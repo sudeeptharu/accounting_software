@@ -321,24 +321,7 @@ $("#addDr").on("click", function () {
 });
 
 
-$("#payment").on("click", function () {
-    document.getElementById('paymentBox').innerHTML+=`<div class="col-6">
-                        <div class="form-group">
-                            <label for="vno">Cr</label>
-                            <select class="form-control">
-                                <option>sdfsd</option>
-                                <option>sdfshikb</option>
-                                <option>no</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="amount">Amount</label>
-                            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
-                        </div>
-                    </div>`
-});
+
 
 $("#addLedger").on("click", function () {
     var deleteBtn=document.createElement('button');
@@ -356,7 +339,6 @@ $("#addLedger").on("click", function () {
                                 <select class="form-control">
                                     <option>Dr</option>
                                     <option>Cr</option>
-
                                 </select>
                             </div>`;
     var newLedger=document.createElement('div');
