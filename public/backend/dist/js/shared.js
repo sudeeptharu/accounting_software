@@ -379,7 +379,6 @@ $("#addLedger").on("click", function () {
 });
 $(document).ready(function() {
     const selectElement = $('.dr-cr-selector');
-
     function getDataFromAttribute() {
         const dataAction = selectElement.attr('data-action');
         types = dataAction.split(',');
@@ -405,7 +404,6 @@ $(document).ready(function() {
             },
         });
     }
-
     getDataFromAttribute();
 });
 
