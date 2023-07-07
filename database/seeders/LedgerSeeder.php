@@ -17,7 +17,7 @@ class LedgerSeeder extends Seeder
             ['Purchase A/c','PURCHASE-ACCOUNTS'],
             ['Sales A/c', 'SALES-ACCOUNTS'],
             ['Cash','CASH-AND-CASH-EQUIVALENTS'],
-            ['Cash','CASH-AND-CASH-EQUIVALENTS'],
+            ['Bank','BANKS'],
         ];
 
         foreach ($data as $datum)
