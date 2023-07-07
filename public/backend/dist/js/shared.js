@@ -423,8 +423,9 @@ $(document).ready(function() {
                     }
                 },
             });
-        }
+    }
 
+    getDataFromAttribute();
         getDataFromAttribute();
     }
 });
