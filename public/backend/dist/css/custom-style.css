@@ -49,3 +49,6 @@ td.wrap-data:hover {
     margin-left: 200px;
     margin-right: 200px;
 }
+.deleteBtn{
+    height: 40px;
+}

@@ -8,72 +8,71 @@
             </div>
 
 
-            <form class="form-horizontal"  >
+            <form class="form-horizontal" action="{{url('purchase-voucher/save')}}" method="post" >
+                @csrf
                 <div class="container">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="vno">V.no</label>
-                                <input type="text" class="form-control" name="vno" id="vno"  autocomplete="off">
+                                <input type="number" class="form-control" name="transaction_no" id="transaction_no"  autocomplete="off">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="date" class="form-control" name="date" id="date"  autocomplete="off">
+                                <input type="date" class="form-control" name="transaction_date" id="transaction_date"  autocomplete="off">
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="voucher_type_identifier" value="PC" >
+
                     <div class="row">
                         <div class="col-1">
-                            <select class="form-control" disabled>
-                                <option >Dr</option>
-                                <option selected>Cr</option>
+                            <select class="form-control" name="dc[]" >
+                                <option selected value="0">Cr</option>
 
                             </select>
                         </div>
                         <div class="col-5">
                             <div class="form-group">
-                                <select class="form-control ledger-selector" data-action="CASH,BANK,DEBTOR-CREDITOR">
+                                <select class="form-control cash-bank-creditor-debitor-ledger-selector" name="ledger_id[]">
 
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="amount" id="amount"placeholder="Amount"  autocomplete="off">
+                                <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-1">
-                            <select class="form-control" disabled>
-                                <option selected >Dr</option>
-                                <option >Cr</option>
+                            <select class="form-control" name="dc[]" >
+                                <option selected value="1">Dr</option>
 
                             </select>
                         </div>
                         <div class="col-5">
                             <div class="form-group">
-                                <select class="form-control ledger-selector" data-action="PURCHASE,TAX">
+                                <select class="form-control purchase-tax-ledger-selector" name="ledger_id[]" >
 
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="amount" id="amount"placeholder="Amount"  autocomplete="off">
+                                <input type="number" class="form-control" name="amount[]" id="amount"placeholder="Amount"  autocomplete="off">
                             </div>
                         </div>
                     </div>
-                    @php
-                        $loop=1;
-                    @endphp
-                    <div class="addDrBox " id="addDrBox">
+
+                    <div class="addDrBoxInPurchase " id="addDrBoxInPurchase">
 
                     </div>
                     <div>
-                        <button type="button" id="addDr" class="btn btn-primary">add</button>
+                        <button type="button" id="addDrPurchase" class="btn btn-primary">add</button>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -93,7 +92,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="button" class="btn btn-lg btn-block btn-primary">Submit</button>
+                            <button type="submit" id="submit" class="btn btn-lg btn-block btn-primary">Submit</button>
                         </div>
                     </div>
 

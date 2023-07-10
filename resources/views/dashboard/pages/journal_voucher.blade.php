@@ -8,37 +8,40 @@
             </div>
 
 
-            <form class="form-horizontal"  >
+            <form class="form-horizontal"  method="post" action="{{url('journal-voucher/save')}}">
+                @csrf
+                <input type="hidden" name="voucher_type_identifier" value="JV" >
+
                 <div class="container">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="vno">V.no</label>
-                                <input type="text" class="form-control" name="vno" id="vno"  autocomplete="off">
+                                <input type="number" class="form-control" name="transaction_no" id="vno"  autocomplete="off">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="date" class="form-control" name="date" id="date"  autocomplete="off">
+                                <input type="date" class="form-control" name="transaction_date" id="date"  autocomplete="off">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-1">
                             <div class="form-group">
                                 <label for="vno">Dr/Cr</label>
-                                <select class="form-control">
-                                    <option>Dr</option>
-                                    <option>Cr</option>
+                                <select class="form-control" name="dc[]">
+                                    <option value="1">Dr</option>
+                                    <option value="0">Cr</option>
 
                                 </select>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-5">
                             <div class="form-group">
                                 <label for="vno">Ledgers</label>
-                                <select class="form-control ledger-selector" data-action=" ">
+                                <select class="form-control ledger-selector" name="ledger_id[]">
 
                                 </select>
                             </div>
@@ -46,17 +49,17 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="amount">Amount</label>
-                                <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+                                <input type="number" class="form-control" name="amount[]" id="amount"  autocomplete="off">
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="addLedgerBox " id="addLedgerBox">
+                    <div id="addLedgerBoxInJournal">
 
                     </div>
                     <div>
-                        <button type="button" id="addLedger" class="btn btn-primary">add</button>
+                        <button type="button" id="addDcJournal" class="btn btn-primary">add</button>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -76,7 +79,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="button" class="btn btn-lg btn-block btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-lg btn-block btn-primary">Submit</button>
                         </div>
                     </div>
 

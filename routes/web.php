@@ -20,7 +20,7 @@ use App\Http\Controllers\VoucherTypeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('ledger');
 });
 
 Route::get('ledger-classification',[LedgerClassificationController::class,'index']);
@@ -62,10 +62,25 @@ Route::get('voucher-type/delete/{id}',[VoucherTypeController::class,'destroy']);
 
 Route::get('getData',[LedgerTypeController::class,'getData']);
 Route::get('contra-voucher',[LedgerTypeController::class,'contraVoucher']);
+Route::post('contra-voucher/save',[LedgerTypeController::class,'VoucherSave']);
+
 Route::get('journal-voucher',[LedgerTypeController::class,'journalVoucher']);
+Route::post('journal-voucher/save',[LedgerTypeController::class,'VoucherSave']);
+
 Route::get('payment-voucher',[LedgerTypeController::class,'paymentVoucher']);
+Route::post('payment-voucher/save',[LedgerTypeController::class,'VoucherSave']);
+
 Route::get('purchase-voucher',[LedgerTypeController::class,'purchaseVoucher']);
+Route::post('purchase-voucher/save',[LedgerTypeController::class,'VoucherSave']);
+
 Route::get('receipt-voucher',[LedgerTypeController::class,'receiptVoucher']);
+Route::post('receipt-voucher/save',[LedgerTypeController::class,'VoucherSave']);
+
 Route::get('sales-voucher',[LedgerTypeController::class,'salesVoucher']);
+Route::post('sales-voucher/save',[LedgerTypeController::class,'VoucherSave']);
+
 Route::get('credit-sales-return',[LedgerTypeController::class,'creditSalesReturn']);
+Route::post('credit-sales-return/save',[LedgerTypeController::class,'VoucherSave']);
+
 Route::get('debit-note-purchase',[LedgerTypeController::class,'debitNotePurchase']);
+Route::post('debit-note-purchase/save',[LedgerTypeController::class,'VoucherSave']);

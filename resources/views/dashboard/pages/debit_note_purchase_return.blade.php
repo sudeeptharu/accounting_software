@@ -6,56 +6,55 @@
             <div class="card-header">
                 <h3 class="card-title">Debit Note Purchase Return</h3>
             </div>
+            <form class="form-horizontal"  method="post"  action="{{url('')}}" >
+                @csrf
+                <input type="hidden" name="voucher_type_identifier" value="DN" >
 
-
-            <form class="form-horizontal"  >
                 <div class="container">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="vno">V.no</label>
-                                <input type="text" class="form-control" name="vno" id="vno"  autocomplete="off">
+                                <input type="number" class="form-control" name="transaction_no" id="vno"  autocomplete="off">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="date" class="form-control" name="date" id="date"  autocomplete="off">
+                                <input type="date" class="form-control" name="transaction_date" id="date"  autocomplete="off">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-1">
-                            <select class="form-control" disabled>
-                                <option selected>Dr</option>
-                                <option>Cr</option>
+                            <select class="form-control" name="dc[]" disabled>
+                                <option selected value="1">Dr</option>
 
                             </select>
                         </div>
                         <div class="col-5">
                             <div class="form-group">
-                                <select class="form-control ledger-selector" data-action="DEBTOR-CREDITOR,CASH,BANK">
-
+                                <select class="form-control cash-bank-creditor-debitor-ledger-selector"
+                                        name="ledger_id[]">
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="amount" id="amount" placeholder="Amount" autocomplete="off">
+                                <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Amount" autocomplete="off">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-1">
-                            <select class="form-control" disabled>
-                                <option >Dr</option>
-                                <option selected>Cr</option>
+                            <select class="form-control" name="dc[]" >
+                                <option selected value="0">Cr</option>
 
                             </select>
                         </div>
                         <div class="col-5">
                             <div class="form-group">
-                                <select class="form-control ledger-selector" data-action="PURCHASE,TAX">
+                                <select class="form-control purchase-tax-ledger-selector" name="ledger_id[]">
 
                                 </select>
                             </div>
@@ -63,11 +62,11 @@
 
                     </div>
 
-                    <div class="addDrNoteBox " id="addDrNoteBox">
+                    <div  id="addCrBoxInDebitNote">
 
                     </div>
                     <div>
-                        <button type="button" id="addDrNote" class="btn btn-primary">add</button>
+                        <button type="button" id="addCrDebitNote" class="btn btn-primary">add</button>
                     </div>
                     <div class="row">
                         <div class="col-12">

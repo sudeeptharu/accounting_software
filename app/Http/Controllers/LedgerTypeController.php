@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\LedgerGroup;
 use App\Models\LedgerType;
 use App\Models\Ledger;
+use App\Models\Transaction;
+use App\Models\TransactionEntry;
 use Illuminate\Http\Request;
 
 class LedgerTypeController extends Controller
@@ -92,28 +94,72 @@ class LedgerTypeController extends Controller
 
         return view('dashboard.pages.contra_voucher');
     }
+
     public function journalVoucher(){
 
         return view('dashboard.pages.journal_voucher');
     }
+
     public function creditSalesReturn(){
 
         return view('dashboard.pages.credit_note_sales_returnn');
-    }public function debitNotePurchase(){
+    }
+
+    public function debitNotePurchase(){
 
         return view('dashboard.pages.debit_note_purchase_return');
-    }public function receiptVoucher(){
+    }
+
+    public function receiptVoucher(){
 
         return view('dashboard.pages.receipt_voucher');
-    }public function purchaseVoucher(){
+    }
+
+    public function purchaseVoucher(){
 
         return view('dashboard.pages.purchase_voucher');
-    }public function salesVoucher(){
+    }
+
+    public function salesVoucher(){
 
         return view('dashboard.pages.sales_voucher');
-    }public function paymentVoucher(){
+    }
+
+    public function paymentVoucher(){
 
         return view('dashboard.pages.payment_voucher');
     }
+    public function VoucherSave(Request $request){
+
+        Transaction::insert([
+
+                'transaction_no'=>$request->transaction_no,
+                'transaction_date'=>$request->transaction_date,
+                'voucher_type_identifier'=>$request->voucher_type_identifier,
+                'narration'=>$request->narration,
+                'remarks'=>$request->remarks
+        ]);
+        $transaction_id=Transaction::where(['transaction_no'=>$request->transaction_no])->first();
+        for($i=0; $i<count($request->dc); $i++){
+
+            if(!isset($request->ledger_id[$i])){
+                TransactionEntry::insert([
+                    'transaction_id'=>$transaction_id->id,
+                    'ledger_id'=>0,
+                    'dc'=>$request->dc[$i],
+                    'amount'=>$request->amount[$i]
+                ]);
+            }else{
+                TransactionEntry::insert([
+                    'transaction_id'=>$transaction_id->id,
+                    'ledger_id'=>$request->ledger_id[$i],
+                    'dc'=>$request->dc[$i],
+                    'amount'=>$request->amount[$i]
+                ]);
+            }
+        }
+        echo "created successfully";
+    }
+
 }
 

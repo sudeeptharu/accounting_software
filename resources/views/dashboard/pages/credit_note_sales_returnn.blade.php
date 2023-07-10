@@ -8,55 +8,64 @@
             </div>
 
 
-            <form class="form-horizontal"  >
+            <form class="form-horizontal" method="post"  action="{{url('')}}">
+                @csrf
+                <input type="hidden" name="voucher_type_identifier" value="CN" >
+
                 <div class="container">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="vno">V.no</label>
-                                <input type="text" class="form-control" name="vno" id="vno"  autocomplete="off">
+                                <input type="number" class="form-control" name="transaction_no" id="vno"  autocomplete="off">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="date" class="form-control" name="date" id="date"  autocomplete="off">
+                                <input type="date" class="form-control" name="transaction_date" id="date"  autocomplete="off">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="vno">Cr</label>
-                                <select class="form-control ledger-selector" data-action="DEBTOR-CREDITOR,CASH,BANK">
+                        <div class="col-1">
+                            <select class="form-control" name="dc[]" >
+                                <option selected value="0">Cr</option>
 
+                            </select>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-group">
+                                <select class="form-control cash-bank-creditor-debitor-ledger-selector"
+                                        name="ledger_id[]">
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="amount">Amount</label>
-                                <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
+                                <input type="number" class="form-control" name="amount[]" id="amount"placeholder="Amount"  autocomplete="off">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-1">
+                            <select class="form-control" name="dc[]" >
+                                <option selected value="1">Dr</option>
+                            </select>
+                        </div>
+                        <div class="col-5">
                             <div class="form-group">
-                                <label for="vno">Dr</label>
-                                <select class="form-control ledger-selector" data-action="SALES,TAX">
-
+                                <select class="form-control sales-tax-ledger-selector" name="ledger_id[]">
                                 </select>
                             </div>
                         </div>
-
                     </div>
 
-                    <div class="addCrNoteSalesBox " id="addCrNoteSalesBox">
+                    <div class="addDrBoxInNoteSales " id="addDrBoxInNoteSales">
 
                     </div>
                     <div>
-                        <button type="button" id="addCrNoteSales" class="btn btn-primary">add</button>
+                        <button type="button" id="addDrNoteSales" class="btn btn-primary">add</button>
                     </div>
                     <div class="row">
                         <div class="col-12">

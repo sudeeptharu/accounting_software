@@ -179,116 +179,13 @@ $(document).ready(function() {
 });
 
 
-$("#addDr").on("click", function () {
-    var deleteBtn = document.createElement('button');
-    deleteBtn.innerText = 'Delete';
-    deleteBtn.classList.add('deleteBtn');
-    deleteBtn.classList.add('btn');
-    deleteBtn.classList.add('btn-danger');
-    deleteBtn.addEventListener('click', function () {
-        this.parentNode.remove();
-    });
-
-    var newDrDiv = document.createElement('div');
-    newDrDiv.classList.add('col-6');
-    newDrDiv.innerHTML = `
-        <div class="form-group">
-            <label for="vno">Dr</label>
-            <select class="form-control">
-                <option>sdfsd</option>
-                <option>sdfshikb</option>
-                <option>no</option>
-            </select>
-        </div>
-    `;
-
-    var newAmountDiv = document.createElement('div');
-    newAmountDiv.classList.add('col-6');
-    newAmountDiv.innerHTML = `
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
-        </div>
-    `;
-
-    var newDrBox = document.createElement('div');
-    newDrBox.classList.add('addCrBox', 'row');
-    newDrBox.appendChild(newDrDiv);
-    newDrBox.appendChild(newAmountDiv);
-    newDrBox.appendChild(deleteBtn);
-
-    document.getElementById('addDrBox').appendChild(newDrBox);
-});
-
-
-
-
-$("#addLedger").on("click", function () {
-    var deleteBtn=document.createElement('button');
-    deleteBtn.innerText = 'Delete';
-    deleteBtn.classList.add('btn','btn-danger');
-    deleteBtn.addEventListener('click',function (){
-        this.parentNode.remove()
-    })
-
-    var newDrCrDiv=document.createElement('div');
-    newDrCrDiv.classList.add('col-3')
-    newDrCrDiv.innerHTML=`
-                            <div class="form-group">
-                                <label for="vno">Dr/Cr</label>
-                                <select class="form-control">
-                                    <option>Dr</option>
-                                    <option>Cr</option>
-                                </select>
-                            </div>`;
-    var newLedger=document.createElement('div');
-    newLedger.classList.add('col-3')
-    newLedger.innerHTML=`
-                            <div class="form-group">
-                                <label for="vno">Ledgers</label>
-                                <select class="form-control">
-                                    <option>zdadf</option>
-                                    <option>Cr</option>
-                                    <option>Cradf</option>
-                                    <option>aaaCr</option>
-
-                                </select>
-                            </div>`;
-
-    var newAmountDiv = document.createElement('div');
-    newAmountDiv.classList.add('col-6');
-    newAmountDiv.innerHTML = `
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
-        </div>
-    `;
-
-    var newLedgerBox = document.createElement('div');
-    newLedgerBox.classList.add('row');
-    newLedgerBox.appendChild(newDrCrDiv);
-    newLedgerBox.appendChild(newLedger);
-    newLedgerBox.appendChild(newAmountDiv);
-    newLedgerBox.appendChild(deleteBtn);
-
-
-    document.getElementById('addLedgerBox').appendChild(newLedgerBox);
-
-
-
-});
 $(document).ready(function() {
     const selectElement = $('.ledger-selector');
-
     function getDataFromAttribute() {
-        const dataAction = selectElement.attr('data-action');
-        types = dataAction.split(',');
         $.ajax({
             url: "/ledgerbytype",
             type: "get",
-            data: {
-                types: types,
-            },
+            data: ['ledgers'],
             success: function (data, textStatus, xhr) {
                 if (xhr.status === 200) {
 
@@ -307,56 +204,15 @@ $(document).ready(function() {
 
     getDataFromAttribute();
 });
-
-
-
-$("#addCr").on("click", function () {
-    var deleteBtn = document.createElement('button');
-    deleteBtn.innerText = 'Delete';
-    deleteBtn.classList.add('deleteBtn');
-    deleteBtn.classList.add('btn');
-    deleteBtn.classList.add('btn-danger');
-    deleteBtn.addEventListener('click', function () {
-        this.parentNode.remove();
-    });
-
-    var newCrDiv = document.createElement('div');
-    newCrDiv.classList.add('col-6');
-    newCrDiv.innerHTML = `
-        <div class="form-group">
-            <label for="vno">Cr</label>
-            <select class="form-control  ledger-selector" data-action="CASH,BANK">
-
-            </select>
-        </div>
-    `;
-
-    var newAmountDiv = document.createElement('div');
-    newAmountDiv.classList.add('col-6');
-    newAmountDiv.innerHTML = `
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="text" class="form-control" name="amount" id="amount"  autocomplete="off">
-        </div>
-    `;
-
-    var newCrBox = document.createElement('div');
-    newCrBox.classList.add('addCrBox', 'row');
-    newCrBox.appendChild(newCrDiv);
-    newCrBox.appendChild(newAmountDiv);
-    newCrBox.appendChild(deleteBtn);
-
-    document.getElementById('addCrBox').appendChild(newCrBox);
-    const selectElement = $('.ledger-selector');
-
+$(document).ready(function() {
+    const cashBankSelector = $('.cash-bank-ledger-selector');
     function getDataFromAttribute() {
-        const dataAction = selectElement.attr('data-action');
-        types = dataAction.split(',');
+
         $.ajax({
             url: "/ledgerbytype",
             type: "get",
             data: {
-                types: types,
+                types: ['CASH','BANK']
             },
             success: function (data, textStatus, xhr) {
                 if (xhr.status === 200) {
@@ -367,7 +223,7 @@ $("#addCr").on("click", function () {
                             value: ledger.id,
                             text: ledger.title
                         })
-                        optionTag.appendTo(newCrDiv);
+                        optionTag.appendTo(cashBankSelector);
                     })
                 }
             },
@@ -375,128 +231,751 @@ $("#addCr").on("click", function () {
     }
 
     getDataFromAttribute();
-    // var newSelectElement = newCrBox.querySelector('.ledger-selector');
-    // getDataFromAttribute2(newSelectElement);
-    // const selectElement = $('.ledger-selector');
-    //
-    // function getDataFromAttribute() {
-    //     const dataAction = selectElement.attr('data-action');
-    //     types = dataAction.split(',');
-    //     $.ajax({
-    //         url: "/ledgerbytype",
-    //         type: "get",
-    //         data: {
-    //             types: types,
-    //         },
-    //         success: function (data, textStatus, xhr) {
-    //             if (xhr.status === 200) {
-    //
-    //                 data.data.forEach((ledger)=>{
-    //                     let optionTag = $("<option>")
-    //                     optionTag.prop({
-    //                         value: ledger.id,
-    //                         text: ledger.title
-    //                     })
-    //                     optionTag.appendTo(selectElement);
-    //                 })
-    //             }
-    //         },
-    //     });
-    // }
-    //
-    // getDataFromAttribute();
 });
-    // const selectElements = $('.ledger-selector');
-    //
-    // function getDataFromAttribute2(selectElement) {
-    //     const dataAction = selectElement.attr('action');
-    //     types = dataAction.split(',');
-    //     $.ajax({
-    //         url: "/ledgerbytype",
-    //         type: "get",
-    //         data: {
-    //             types: types,
-    //         },
-    //         success: function (data, textStatus, xhr) {
-    //             if (xhr.status === 200) {
-    //                 selectElement.empty(); // Clear existing options
-    //
-    //                 data.data.forEach((ledger)=>{
-    //                     let optionTag = $("<option>")
-    //                     optionTag.prop({
-    //                         value: ledger.id,
-    //                         text: ledger.title
-    //                     })
-    //                     optionTag.appendTo(selectElement);
-    //                 });
-    //             }
-    //         },
-    //     });
-    // }
-    //
-    // selectElements.each(function() {
-    //     getDataFromAttribute2($(this));
-    // });
+$(document).ready(function() {
+    const creditorDebitorSelctor = $('.creditor-debitor-ledger-selector');
+    function getDataFromAttribute() {
 
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['DEBTOR-CREDITOR']
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
 
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(creditorDebitorSelctor);
+                    })
+                }
+            },
+        });
+    }
 
+    getDataFromAttribute();
+});
+$(document).ready(function() {
+    const cashBankCreditorDebitorSelctor = $('.cash-bank-creditor-debitor-ledger-selector');
+    function getDataFromAttribute() {
 
-$("#addCrNoteSales").on("click", function () {
-    var deleteBtn=document.createElement('button');
-    deleteBtn.innerText='delete';
-    deleteBtn.classList.add("btn",'btn-danger');
-    deleteBtn.addEventListener('click',function (){
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['CASH','BANK','DEBTOR-CREDITOR']
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(cashBankCreditorDebitorSelctor);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+});
+$(document).ready(function() {
+    const salesTaxSelctor = $('.sales-tax-ledger-selector');
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['SALES','TAX']
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(salesTaxSelctor);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+});
+$(document).ready(function() {
+    const purchaseTaxSelctor = $('.purchase-tax-ledger-selector');
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['PURCHASE','TAX']
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(purchaseTaxSelctor);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+});
+
+$("#addCrContra").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn','btn','btn-danger');
+    deleteBtn.addEventListener('click', function () {
         this.parentNode.remove();
-    })
+    });
 
-    var addDr=document.createElement('div');
-    addDr.classList.add('col-6');
-    addDr.innerHTML=`
-                            <div class="form-group">
-                                <label for="vno">Dr</label>
-                                <select class="form-control">
-                                    <option>sdfsd</option>
-                                    <option>sdfshikb</option>
-                                    <option>no</option>
-                                </select>
-                            </div>
+    var crDisabled=document.createElement('select');
+    crDisabled.classList.add('form-control');
+    crDisabled.name="dc[]"
+
+    var options=[
+        {text:'Cr',value:0},
+    ];
+
+    for(var i=0;i<1;i++){
+        var option=document.createElement('option');
+        option.text=options[i].text
+        option.value=options[i].value
+        crDisabled.add(option);
+    }
+    crDisabled.selectedIndex=0;
+
+    var crDisabledDiv=document.createElement('div');
+    crDisabledDiv.classList.add('col-1');
+    crDisabledDiv.appendChild(crDisabled);
+
+    var newCrSelect = document.createElement('select');
+    newCrSelect.classList.add('form-control');
+    newCrSelect.name="ledger_id[]"
+
+    var newCrDiv=document.createElement('div');
+    newCrDiv.classList.add('col-5');
+    newCrDiv.appendChild(newCrSelect);
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-5');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+        </div>
     `;
 
-    var newbox=document.createElement('div');
-    newbox.classList.add('row');
-    newbox.appendChild(addDr);
-    newbox.appendChild(deleteBtn);
+    var newCrBox = document.createElement('div');
+    newCrBox.classList.add('addCrBox', 'row');
+    newCrBox.appendChild(crDisabledDiv);
+    newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(newAmountDiv);
+    newCrBox.appendChild(deleteBtn);
 
-    document.getElementById('addCrNoteSalesBox').append(newbox);
+    document.getElementById('addCrBoxInContra').appendChild(newCrBox);
+    const selectElement = $('.cash-bank-ledger-selector');
+
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['CASH','BANK'],
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(newCrSelect);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
 });
-$("#addDrNote").on("click", function () {
-    var deleteBtn=document.createElement('button');
-    deleteBtn.innerText='delete';
-    deleteBtn.classList.add("btn",'btn-danger');
-    deleteBtn.addEventListener('click',function (){
+$("#addDcJournal").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn','btn','btn-danger');
+    deleteBtn.addEventListener('click', function () {
         this.parentNode.remove();
-    })
+    });
 
-    var addCr=document.createElement('div');
-    addCr.classList.add('col-6');
-    addCr.innerHTML=`
-                            <div class="form-group">
-                                <label for="vno">Cr</label>
-                                <select class="form-control">
-                                    <option>sdfsd</option>
-                                    <option>sdfshikb</option>
-                                    <option>no</option>
-                                </select>
-                            </div>
+    var crDisabled=document.createElement('select');
+    crDisabled.classList.add('form-control');
+    crDisabled.name="dc[]"
+
+    var options=[
+        {text:'Cr',value:0},
+        {text:'Dr',value:1}
+    ];
+
+    for(var i=0;i<2;i++){
+        var option=document.createElement('option');
+        option.text=options[i].text
+        option.value=options[i].value
+        crDisabled.add(option);
+    }
+
+    var crDisabledDiv=document.createElement('div');
+    crDisabledDiv.classList.add('col-1');
+    crDisabledDiv.appendChild(crDisabled);
+
+    var newCrSelect = document.createElement('select');
+    newCrSelect.classList.add('form-control');
+    newCrSelect.name="ledger_id[]";
+
+    var newCrDiv=document.createElement('div');
+    newCrDiv.classList.add('col-5');
+    newCrDiv.appendChild(newCrSelect);
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-5');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+        </div>
     `;
 
-    var newbox=document.createElement('div');
-    newbox.classList.add('row');
-    newbox.appendChild(addCr);
-    newbox.appendChild(deleteBtn);
+    var newCrBox = document.createElement('div');
+    newCrBox.classList.add('addCrBox', 'row');
+    newCrBox.appendChild(crDisabledDiv);
+    newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(newAmountDiv);
+    newCrBox.appendChild(deleteBtn);
 
-    document.getElementById('addDrNoteBox').append(newbox);
+    document.getElementById('addLedgerBoxInJournal').appendChild(newCrBox);
+
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: ['ledgers'],
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(newCrSelect);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
 });
+$("#addCrPayment").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn','btn','btn-danger');
+    deleteBtn.addEventListener('click', function () {
+        this.parentNode.remove();
+    });
+
+    var crDisabled=document.createElement('select');
+    crDisabled.classList.add('form-control');
+    crDisabled.name="dc[]"
+
+    var options=[
+        {text:'Cr',value:0},
+    ];
+
+    for(var i=0;i<1;i++){
+        var option=document.createElement('option');
+        option.text=options[i].text
+        option.value=options[i].value
+        crDisabled.add(option);
+    }
+    crDisabled.selectedIndex=0;
+
+    var crDisabledDiv=document.createElement('div');
+    crDisabledDiv.classList.add('col-1');
+    crDisabledDiv.appendChild(crDisabled);
+
+    var newCrSelect = document.createElement('select');
+    newCrSelect.classList.add('form-control');
+    newCrSelect.name="ledger_id[]"
+
+    var newCrDiv=document.createElement('div');
+    newCrDiv.classList.add('col-5');
+    newCrDiv.appendChild(newCrSelect);
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-5');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+        </div>
+    `;
+
+    var newCrBox = document.createElement('div');
+    newCrBox.classList.add('addCrBox', 'row');
+    newCrBox.appendChild(crDisabledDiv);
+    newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(newAmountDiv);
+    newCrBox.appendChild(deleteBtn);
+
+    document.getElementById('addCrBoxInPayment').appendChild(newCrBox);
+    const selectElement = $('.cash-bank-ledger-selector');
+
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['CASH','BANK'],
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(newCrSelect);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+});
+$("#addDrPurchase").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn','btn','btn-danger');
+    deleteBtn.addEventListener('click', function () {
+        this.parentNode.remove();
+    });
+
+    var crDisabled=document.createElement('select');
+    crDisabled.classList.add('form-control');
+    crDisabled.name="dc[]"
+
+    var options=[
+        {text:'Cr',value:0},
+        {text:'Dr',value:1}
+    ];
+
+    for(var i=0;i<2;i++){
+        var option=document.createElement('option');
+        option.text=options[i].text
+        option.value=options[i].value
+        crDisabled.add(option);
+        if(i==0){
+            option.disabled=true
+        }
+    }
+    crDisabled.selectedIndex=1;
+
+
+    var crDisabledDiv=document.createElement('div');
+    crDisabledDiv.classList.add('col-1');
+    crDisabledDiv.appendChild(crDisabled);
+
+    var newCrSelect = document.createElement('select');
+    newCrSelect.classList.add('form-control');
+    newCrSelect.name="ledger_id[]"
+
+    var newCrDiv=document.createElement('div');
+    newCrDiv.classList.add('col-5');
+    newCrDiv.appendChild(newCrSelect);
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-5');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+        </div>
+    `;
+
+    var newCrBox = document.createElement('div');
+    newCrBox.classList.add('addCrBox', 'row');
+    newCrBox.appendChild(crDisabledDiv);
+    newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(newAmountDiv);
+    newCrBox.appendChild(deleteBtn);
+
+    document.getElementById('addDrBoxInPurchase').appendChild(newCrBox);
+    const selectElement = $('.purchase-tax-ledger-selector');
+
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['PURCHASE','TAX'],
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(newCrSelect);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+});
+$("#addDrReceipt").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn','btn','btn-danger');
+    deleteBtn.addEventListener('click', function () {
+        this.parentNode.remove();
+    });
+
+    var crDisabled=document.createElement('select');
+    crDisabled.classList.add('form-control');
+    crDisabled.name="dc[]"
+
+    var options=[
+        {text:'Dr',value:1}
+    ];
+
+    for(var i=0;i<1;i++){
+        var option=document.createElement('option');
+        option.text=options[i].text
+        option.value=options[i].value
+        crDisabled.add(option);
+    }
+    crDisabled.selectedIndex=0;
+
+
+    var crDisabledDiv=document.createElement('div');
+    crDisabledDiv.classList.add('col-1');
+    crDisabledDiv.appendChild(crDisabled);
+
+    var newCrSelect = document.createElement('select');
+    newCrSelect.classList.add('form-control');
+    newCrSelect.name="ledger_id[]"
+
+    var newCrDiv=document.createElement('div');
+    newCrDiv.classList.add('col-5');
+    newCrDiv.appendChild(newCrSelect);
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-5');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+        </div>
+    `;
+
+    var newCrBox = document.createElement('div');
+    newCrBox.classList.add('addCrBox', 'row');
+    newCrBox.appendChild(crDisabledDiv);
+    newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(newAmountDiv);
+    newCrBox.appendChild(deleteBtn);
+
+    document.getElementById('addDrBoxInReceipt').appendChild(newCrBox);
+    const selectElement = $('.cash-bank-ledger-selector');
+
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['CASH','BANK'],
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(newCrSelect);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+});
+$("#addCrSales").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn','btn','btn-danger');
+    deleteBtn.addEventListener('click', function () {
+        this.parentNode.remove();
+    });
+
+    var crDisabled=document.createElement('select');
+    crDisabled.classList.add('form-control');
+    crDisabled.name="dc[]"
+
+    var options=[
+        {text:'Cr',value:0},
+    ];
+
+    for(var i=0;i<1;i++){
+        var option=document.createElement('option');
+        option.text=options[i].text
+        option.value=options[i].value
+        crDisabled.add(option);
+    }
+    crDisabled.selectedIndex=0;
+
+    var crDisabledDiv=document.createElement('div');
+    crDisabledDiv.classList.add('col-1');
+    crDisabledDiv.appendChild(crDisabled);
+
+    var newCrSelect = document.createElement('select');
+    newCrSelect.classList.add('form-control');
+    newCrSelect.name="ledger_id[]"
+
+    var newCrDiv=document.createElement('div');
+    newCrDiv.classList.add('col-5');
+    newCrDiv.appendChild(newCrSelect);
+
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-5');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <input type="number" class="form-control" name="amount[]"" id="amount" placeholder="Enter Amount"  autocomplete="off">
+        </div>
+    `;
+
+    var newCrBox = document.createElement('div');
+    newCrBox.classList.add('addCrBox', 'row');
+    newCrBox.appendChild(crDisabledDiv);
+    newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(newAmountDiv);
+    newCrBox.appendChild(deleteBtn);
+
+    document.getElementById('addCrBoxInSales').appendChild(newCrBox);
+    const selectElement = $('.sales-tax-ledger-selector');
+
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['SALES','TAX'],
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(newCrSelect);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+});
+$("#addDrNoteSales").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn','btn','btn-danger');
+    deleteBtn.addEventListener('click', function () {
+        this.parentNode.remove();
+    });
+
+    var drDisabled=document.createElement('select');
+    drDisabled.classList.add('form-control');
+
+    var options=[
+        {text:'Cr',value:0},
+        {text:'Dr',value:1}
+    ];
+
+    for(var i=0;i<2;i++){
+        var option=document.createElement('option');
+        option.text=options[i].text
+        option.value=options[i].value
+        drDisabled.add(option);
+    }
+    drDisabled.selectedIndex=1;
+    drDisabled.disabled=true;
+
+    var drDisabledDiv=document.createElement('div');
+    drDisabledDiv.classList.add('col-1');
+    drDisabledDiv.appendChild(drDisabled);
+
+    var newDrSelect = document.createElement('select');
+    newDrSelect.classList.add('form-control');
+    newDrSelect.name="selected-ledger-dr[]";
+
+    var newDrDiv=document.createElement('div');
+    newDrDiv.classList.add('col-5');
+    newDrDiv.appendChild(newDrSelect);
+
+    var newDrBox = document.createElement('div');
+    newDrBox.classList.add('addDrBox', 'row');
+    newDrBox.appendChild(drDisabledDiv);
+    newDrBox.appendChild(newDrDiv);
+    newDrBox.appendChild(deleteBtn);
+
+    document.getElementById('addDrBoxInNoteSales').appendChild(newDrBox);
+    const selectElement = $('.sales-tax-ledger-selector');
+
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['SALES','TAX'],
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(newDrSelect);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+
+});
+$("#addCrDebitNote").on("click", function () {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('deleteBtn','btn','btn-danger');
+    deleteBtn.addEventListener('click', function () {
+        this.parentNode.remove();
+    });
+
+    var crDisabled=document.createElement('select');
+    crDisabled.classList.add('form-control');
+
+    var options=[
+        {text:'Cr',value:0},
+        {text:'Dr',value:1}
+    ];
+
+    for(var i=0;i<2;i++){
+        var option=document.createElement('option');
+        option.text=options[i].text
+        option.value=options[i].value
+        crDisabled.add(option);
+    }
+    crDisabled.selectedIndex=0;
+    crDisabled.disabled=true;
+
+    var crDisabledDiv=document.createElement('div');
+    crDisabledDiv.classList.add('col-1');
+    crDisabledDiv.appendChild(crDisabled);
+
+    var newCrSelect = document.createElement('select');
+    newCrSelect.classList.add('form-control');
+    newCrSelect.name="selected-ledger-cr[]"
+
+    var newCrDiv=document.createElement('div');
+    newCrDiv.classList.add('col-5');
+    newCrDiv.appendChild(newCrSelect);
+
+
+
+    var newCrBox = document.createElement('div');
+    newCrBox.classList.add('addCrBox', 'row');
+    newCrBox.appendChild(crDisabledDiv);
+    newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(deleteBtn);
+
+    document.getElementById('addCrBoxInDebitNote').appendChild(newCrBox);
+    const selectElement = $('.sales-tax-ledger-selector');
+
+    function getDataFromAttribute() {
+
+        $.ajax({
+            url: "/ledgerbytype",
+            type: "get",
+            data: {
+                types: ['SALES','TAX'],
+            },
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 200) {
+
+                    data.data.forEach((ledger)=>{
+                        let optionTag = $("<option>")
+                        optionTag.prop({
+                            value: ledger.id,
+                            text: ledger.title
+                        })
+                        optionTag.appendTo(newCrSelect);
+                    })
+                }
+            },
+        });
+    }
+
+    getDataFromAttribute();
+});
+
 
 
 
