@@ -7,6 +7,7 @@ use App\Http\Controllers\LedgerController;
 use App\Http\Controllers\LedgerGroupController;
 use App\Http\Controllers\LedgerTypeController;
 use App\Http\Controllers\VoucherTypeController;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,25 +63,66 @@ Route::get('voucher-type/delete/{id}',[VoucherTypeController::class,'destroy']);
 
 Route::get('getData',[LedgerTypeController::class,'getData']);
 Route::get('contra-voucher',[LedgerTypeController::class,'contraVoucher']);
+Route::get('contra-voucher/add',function (){
+    $previousurl=URL::previous();
+    session()->put('previousurl',$previousurl);
+    return view('dashboard.pages.add_contra_voucher');
+});
 Route::post('contra-voucher/save',[LedgerTypeController::class,'VoucherSave']);
 
 Route::get('journal-voucher',[LedgerTypeController::class,'journalVoucher']);
+Route::get('journal-voucher/add',function (){
+    $previousurl=URL::previous();
+    session()->put('previousurl',$previousurl);
+    return view('dashboard.pages.add_journal_voucher');
+});
 Route::post('journal-voucher/save',[LedgerTypeController::class,'VoucherSave']);
 
 Route::get('payment-voucher',[LedgerTypeController::class,'paymentVoucher']);
+Route::get('payment-voucher/add',function (){
+    $previousurl=URL::previous();
+    session()->put('previousurl',$previousurl);
+    return view('dashboard.pages.add_payment_voucher');
+});
 Route::post('payment-voucher/save',[LedgerTypeController::class,'VoucherSave']);
 
 Route::get('purchase-voucher',[LedgerTypeController::class,'purchaseVoucher']);
+Route::get('purchase-voucher/add',function (){
+    $previousurl=URL::previous();
+    session()->put('previousurl',$previousurl);
+    return view('dashboard.pages.add_purchase_voucher');
+});
 Route::post('purchase-voucher/save',[LedgerTypeController::class,'VoucherSave']);
 
 Route::get('receipt-voucher',[LedgerTypeController::class,'receiptVoucher']);
+Route::get('receipt-voucher/add',function (){
+    $previousurl=URL::previous();
+    session()->put('previousurl',$previousurl);
+    return view('dashboard.pages.add_receipt_voucher');
+});
 Route::post('receipt-voucher/save',[LedgerTypeController::class,'VoucherSave']);
 
 Route::get('sales-voucher',[LedgerTypeController::class,'salesVoucher']);
+Route::get('sales-voucher/add',function (){
+    $previousurl=URL::previous();
+    session()->put('previousurl',$previousurl);
+    return view('dashboard.pages.add_sales_voucher');
+});
 Route::post('sales-voucher/save',[LedgerTypeController::class,'VoucherSave']);
 
 Route::get('credit-sales-return',[LedgerTypeController::class,'creditSalesReturn']);
+Route::get('credit-sales-return/add',function (){
+    $previousurl=URL::previous();
+    session()->put('previousurl',$previousurl);
+    return view('dashboard.pages.add_credit_note_sales_return_voucher');
+});
 Route::post('credit-sales-return/save',[LedgerTypeController::class,'VoucherSave']);
 
 Route::get('debit-note-purchase',[LedgerTypeController::class,'debitNotePurchase']);
+Route::get('debit-note-purchase-voucher/add',function (){
+    $previousurl=URL::previous();
+    session()->put('previousurl',$previousurl);
+    return view('dashboard.pages.add_debit_note_purchase_return_voucher');
+});
+
 Route::post('debit-note-purchase/save',[LedgerTypeController::class,'VoucherSave']);

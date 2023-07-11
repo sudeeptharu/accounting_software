@@ -8,6 +8,7 @@ use App\Models\Ledger;
 use App\Models\Transaction;
 use App\Models\TransactionEntry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class LedgerTypeController extends Controller
 {
@@ -84,53 +85,49 @@ class LedgerTypeController extends Controller
     }
     public function getData()
     {
-
-
         $data = LedgerType::with('ledger_groups.ledgers')->get();
         return view('dashboard.pages.data', ['data' => $data]);
-
     }
     public function contraVoucher(){
-
-        return view('dashboard.pages.contra_voucher');
+        $contravouchers=Transaction::where('voucher_type_identifier','CT')->get();
+        return view('dashboard.pages.contra_vouchers',compact('contravouchers'));
     }
 
     public function journalVoucher(){
-
-        return view('dashboard.pages.journal_voucher');
+        $journalvouchers=Transaction::where('voucher_type_identifier','JV')->get();
+        return view('dashboard.pages.journal_vouchers',compact('journalvouchers'));
     }
 
     public function creditSalesReturn(){
-
-        return view('dashboard.pages.credit_note_sales_returnn');
+        $creditnotesalesvouchers=Transaction::where('voucher_type_identifier','CN')->get();
+        return view('dashboard.pages.credit_note_sales_vouchers',compact('creditnotesalesvouchers'));
     }
 
     public function debitNotePurchase(){
-
-        return view('dashboard.pages.debit_note_purchase_return');
+        $debitnotepurchasevouchers=Transaction::where('voucher_type_identifier','DN')->get();
+        return view('dashboard.pages.debit_note_purchase_vouchers',compact('debitnotepurchasevouchers'));
     }
 
     public function receiptVoucher(){
-
-        return view('dashboard.pages.receipt_voucher');
+        $receiptvouchers=Transaction::where('voucher_type_identifier','RC')->get();
+        return view('dashboard.pages.receipt_vouchers',compact('receiptvouchers'));
     }
 
     public function purchaseVoucher(){
-
-        return view('dashboard.pages.purchase_voucher');
+        $purchasevouchers=Transaction::where('voucher_type_identifier','PC')->get();
+        return view('dashboard.pages.purchase_vouchers',compact('purchasevouchers'));
     }
 
     public function salesVoucher(){
-
-        return view('dashboard.pages.sales_voucher');
+        $salesvouchers=Transaction::where('voucher_type_identifier','SL')->get();
+        return view('dashboard.pages.sales_vouchers',compact('salesvouchers'));
     }
 
     public function paymentVoucher(){
-
-        return view('dashboard.pages.payment_voucher');
+        $paymentvouchers=Transaction::where('voucher_type_identifier','PY')->get();
+        return view('dashboard.pages.payment_vouchers',compact('paymentvouchers'));
     }
     public function VoucherSave(Request $request){
-
         Transaction::insert([
 
                 'transaction_no'=>$request->transaction_no,
@@ -158,7 +155,9 @@ class LedgerTypeController extends Controller
                 ]);
             }
         }
-        echo "created successfully";
+        $previousurl=session()->get('previousurl');
+        return redirect($previousurl);
+        echo "kjhkj";
     }
 
 }

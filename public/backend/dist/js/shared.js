@@ -865,10 +865,19 @@ $("#addDrNoteSales").on("click", function () {
     newDrDiv.classList.add('col-5');
     newDrDiv.appendChild(newDrSelect);
 
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-5');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <input type="number" class="form-control" name="amount[]"" id="amount" placeholder="Enter Amount"  autocomplete="off">
+        </div>
+    `;
+
     var newDrBox = document.createElement('div');
     newDrBox.classList.add('addDrBox', 'row');
     newDrBox.appendChild(drDisabledDiv);
     newDrBox.appendChild(newDrDiv);
+    newDrBox.appendChild(newAmountDiv);
     newDrBox.appendChild(deleteBtn);
 
     document.getElementById('addDrBoxInNoteSales').appendChild(newDrBox);
@@ -914,17 +923,15 @@ $("#addCrDebitNote").on("click", function () {
 
     var options=[
         {text:'Cr',value:0},
-        {text:'Dr',value:1}
     ];
 
-    for(var i=0;i<2;i++){
+    for(var i=0;i<1;i++){
         var option=document.createElement('option');
         option.text=options[i].text
         option.value=options[i].value
         crDisabled.add(option);
     }
     crDisabled.selectedIndex=0;
-    crDisabled.disabled=true;
 
     var crDisabledDiv=document.createElement('div');
     crDisabledDiv.classList.add('col-1');
@@ -938,12 +945,19 @@ $("#addCrDebitNote").on("click", function () {
     newCrDiv.classList.add('col-5');
     newCrDiv.appendChild(newCrSelect);
 
-
+    var newAmountDiv = document.createElement('div');
+    newAmountDiv.classList.add('col-5');
+    newAmountDiv.innerHTML = `
+        <div class="form-group">
+            <input type="number" class="form-control" name="amount[]"" id="amount" placeholder="Enter Amount"  autocomplete="off">
+        </div>
+    `;
 
     var newCrBox = document.createElement('div');
     newCrBox.classList.add('addCrBox', 'row');
     newCrBox.appendChild(crDisabledDiv);
     newCrBox.appendChild(newCrDiv);
+    newCrBox.appendChild(newAmountDiv);
     newCrBox.appendChild(deleteBtn);
 
     document.getElementById('addCrBoxInDebitNote').appendChild(newCrBox);

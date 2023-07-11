@@ -1,16 +1,14 @@
-@extends('dashboard.layouts.app',['name' => 'Credit Note Sale Return'])
+@extends('dashboard.layouts.app',['name' => 'Voucher Type'])
 
 @section('content')
     <div class="">
         <div class="card card-secondary card1">
             <div class="card-header">
-                <h3 class="card-title">Credit Note Sale Return</h3>
+                <h3 class="card-title">Debit Note Purchase Return</h3>
             </div>
-
-
-            <form class="form-horizontal" method="post"  action="{{url('')}}">
+            <form class="form-horizontal"  method="post"  action="{{url('debit-note-purchase/save')}}" >
                 @csrf
-                <input type="hidden" name="voucher_type_identifier" value="CN" >
+                <input type="hidden" name="voucher_type_identifier" value="DN" >
 
                 <div class="container">
                     <div class="row">
@@ -30,7 +28,7 @@
                     <div class="row">
                         <div class="col-1">
                             <select class="form-control" name="dc[]" >
-                                <option selected value="0">Cr</option>
+                                <option selected value="1">Dr</option>
 
                             </select>
                         </div>
@@ -43,29 +41,37 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <input type="number" class="form-control" name="amount[]" id="amount"placeholder="Amount"  autocomplete="off">
+                                <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Amount" autocomplete="off">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-1">
                             <select class="form-control" name="dc[]" >
-                                <option selected value="1">Dr</option>
+                                <option selected value="0">Cr</option>
+
                             </select>
                         </div>
                         <div class="col-5">
                             <div class="form-group">
-                                <select class="form-control sales-tax-ledger-selector" name="ledger_id[]">
+                                <select class="form-control purchase-tax-ledger-selector" name="ledger_id[]">
+
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="amount[]"
+                                       id="amount" placeholder="Enter Amount"  autocomplete="off">
                             </div>
                         </div>
                     </div>
 
-                    <div class="addDrBoxInNoteSales " id="addDrBoxInNoteSales">
+                    <div  id="addCrBoxInDebitNote">
 
                     </div>
                     <div>
-                        <button type="button" id="addDrNoteSales" class="btn btn-primary">add</button>
+                        <button type="button" id="addCrDebitNote" class="btn btn-primary">add</button>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -85,7 +91,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="button" class="btn btn-lg btn-block btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-lg btn-block btn-primary">Submit</button>
                         </div>
                     </div>
 
