@@ -89,7 +89,7 @@ class LedgerTypeController extends Controller
         return view('dashboard.pages.data', ['data' => $data]);
     }
     public function contraVoucher(){
-        $contravouchers=Transaction::where('voucher_type_identifier','CT')->get();
+        $contravouchers=Transaction::with('transaction_entries')->where('voucher_type_identifier','CT')->get();
         return view('dashboard.pages.contra_vouchers',compact('contravouchers'));
     }
 
@@ -99,35 +99,56 @@ class LedgerTypeController extends Controller
     }
 
     public function creditSalesReturn(){
-        $creditnotesalesvouchers=Transaction::where('voucher_type_identifier','CN')->get();
+        $creditnotesalesvouchers=Transaction::with('transaction_entries')->where('voucher_type_identifier','CN')->get();
         return view('dashboard.pages.credit_note_sales_vouchers',compact('creditnotesalesvouchers'));
     }
 
     public function debitNotePurchase(){
-        $debitnotepurchasevouchers=Transaction::where('voucher_type_identifier','DN')->get();
+        $debitnotepurchasevouchers=Transaction::with('transaction_entries')->where('voucher_type_identifier','DN')->get();
         return view('dashboard.pages.debit_note_purchase_vouchers',compact('debitnotepurchasevouchers'));
     }
 
     public function receiptVoucher(){
-        $receiptvouchers=Transaction::where('voucher_type_identifier','RC')->get();
+        $receiptvouchers=Transaction::with('transaction_entries')->where('voucher_type_identifier','RC')->get();
         return view('dashboard.pages.receipt_vouchers',compact('receiptvouchers'));
     }
 
     public function purchaseVoucher(){
-        $purchasevouchers=Transaction::where('voucher_type_identifier','PC')->get();
+        $purchasevouchers=Transaction::with('transaction_entries')->where('voucher_type_identifier','PC')->get();
         return view('dashboard.pages.purchase_vouchers',compact('purchasevouchers'));
     }
 
     public function salesVoucher(){
-        $salesvouchers=Transaction::where('voucher_type_identifier','SL')->get();
+        $salesvouchers=Transaction::with('transaction_entries')->where('voucher_type_identifier','SL')->get();
         return view('dashboard.pages.sales_vouchers',compact('salesvouchers'));
     }
 
     public function paymentVoucher(){
-        $paymentvouchers=Transaction::where('voucher_type_identifier','PY')->get();
+        $paymentvouchers=Transaction::with('transaction_entries')->where('voucher_type_identifier','PY')->get();
         return view('dashboard.pages.payment_vouchers',compact('paymentvouchers'));
     }
     public function VoucherSave(Request $request){
+        dd($request->toArray());
+        $cr_sum=array_sum($request->cr_amount);
+        $dr_sum=array_sum($request->dr_amount);
+        $cr_sum_Array=$request->cr_amount;
+        $dr_sum_Array=$request->dr_amount;
+        if($request->voucher_type_identifier=='CT'||'DN'||'PY'||'SL'){
+            if($cr_sum!=$dr_sum){
+                return redirect()->back()->with('message',"toal amount of cr and dr must be equal");
+
+            }else{
+                $mergedAmount = array_merge( $dr_sum_Array,$cr_sum_Array);
+            }
+        }else{
+            if($cr_sum!=$dr_sum){
+                return redirect()->back()->with('message',"toal amount of cr and dr must be equal");
+
+            }else{
+                $mergedAmount = array_merge($cr_sum_Array, $dr_sum_Array);
+            }
+        }
+
         Transaction::insert([
 
                 'transaction_no'=>$request->transaction_no,
@@ -144,20 +165,19 @@ class LedgerTypeController extends Controller
                     'transaction_id'=>$transaction_id->id,
                     'ledger_id'=>0,
                     'dc'=>$request->dc[$i],
-                    'amount'=>$request->amount[$i]
+                    'amount'=>$mergedAmount[$i]
                 ]);
             }else{
                 TransactionEntry::insert([
                     'transaction_id'=>$transaction_id->id,
                     'ledger_id'=>$request->ledger_id[$i],
                     'dc'=>$request->dc[$i],
-                    'amount'=>$request->amount[$i]
+                    'amount'=>$mergedAmount[$i]
                 ]);
             }
         }
         $previousurl=session()->get('previousurl');
         return redirect($previousurl);
-        echo "kjhkj";
     }
 
 }

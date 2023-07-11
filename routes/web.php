@@ -46,8 +46,7 @@ Route::get('/classification/{identifier}',[TestController::class,'classification
 Route::get('/group/{identifier}',[TestController::class,'group']);
 Route::get('/ledger/{identifier}',[TestController::class,'ledger']);
 Route::get('/txn/{id}',[TestController::class,'txn']);
-//Route::get('/ledgerByType',[TestController::class,'ledgers_by_type']);
-/*Tests*/
+
 Route::get('/ledgerbytype',[TestController::class,'ledgers_by_type']);
 
 Route::get('ledger-type',[LedgerTypeController::class,'index']);
@@ -108,6 +107,7 @@ Route::get('sales-voucher/add',function (){
     session()->put('previousurl',$previousurl);
     return view('dashboard.pages.add_sales_voucher');
 });
+
 Route::post('sales-voucher/save',[LedgerTypeController::class,'VoucherSave']);
 
 Route::get('credit-sales-return',[LedgerTypeController::class,'creditSalesReturn']);

@@ -178,6 +178,14 @@ $(document).ready(function() {
 
 });
 
+// function calculateSum(){
+//     const crAmountFields = document.getElementsByClassName('cr_amount');
+//     const crAmounts = Array.from(crAmountFields).map(field => parseFloat(field.value) || 0);
+//     const drAmountField = document.getElementById('dr_amount');
+//
+//     const drAmount = crAmounts.reduce((acc, curr) => acc + curr, 0);
+//     drAmountField.value = drAmount;
+// }
 
 $(document).ready(function() {
     const selectElement = $('.ledger-selector');
@@ -385,7 +393,7 @@ $("#addCrContra").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control cr_amount" name="cr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -542,7 +550,7 @@ $("#addCrPayment").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="cr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -595,20 +603,17 @@ $("#addDrPurchase").on("click", function () {
     crDisabled.name="dc[]"
 
     var options=[
-        {text:'Cr',value:0},
         {text:'Dr',value:1}
     ];
 
-    for(var i=0;i<2;i++){
+    for(var i=0;i<1;i++){
         var option=document.createElement('option');
         option.text=options[i].text
         option.value=options[i].value
         crDisabled.add(option);
-        if(i==0){
-            option.disabled=true
-        }
+
     }
-    crDisabled.selectedIndex=1;
+    crDisabled.selectedIndex=0;
 
 
     var crDisabledDiv=document.createElement('div');
@@ -627,7 +632,7 @@ $("#addDrPurchase").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="dr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -708,7 +713,7 @@ $("#addDrReceipt").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="dr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -788,7 +793,7 @@ $("#addCrSales").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="amount[]"" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="cr_amount[]"" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -838,20 +843,18 @@ $("#addDrNoteSales").on("click", function () {
 
     var drDisabled=document.createElement('select');
     drDisabled.classList.add('form-control');
-
+    drDisabled.name="dc[]";
     var options=[
-        {text:'Cr',value:0},
         {text:'Dr',value:1}
     ];
 
-    for(var i=0;i<2;i++){
+    for(var i=0;i<1;i++){
         var option=document.createElement('option');
         option.text=options[i].text
         option.value=options[i].value
         drDisabled.add(option);
     }
-    drDisabled.selectedIndex=1;
-    drDisabled.disabled=true;
+    drDisabled.selectedIndex=0;
 
     var drDisabledDiv=document.createElement('div');
     drDisabledDiv.classList.add('col-1');
@@ -859,7 +862,7 @@ $("#addDrNoteSales").on("click", function () {
 
     var newDrSelect = document.createElement('select');
     newDrSelect.classList.add('form-control');
-    newDrSelect.name="selected-ledger-dr[]";
+    newDrSelect.name="ledger_id[]";
 
     var newDrDiv=document.createElement('div');
     newDrDiv.classList.add('col-5');
@@ -869,7 +872,7 @@ $("#addDrNoteSales").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="amount[]"" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="dr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -920,7 +923,7 @@ $("#addCrDebitNote").on("click", function () {
 
     var crDisabled=document.createElement('select');
     crDisabled.classList.add('form-control');
-
+    crDisabled.name="dc[]";
     var options=[
         {text:'Cr',value:0},
     ];
@@ -939,7 +942,7 @@ $("#addCrDebitNote").on("click", function () {
 
     var newCrSelect = document.createElement('select');
     newCrSelect.classList.add('form-control');
-    newCrSelect.name="selected-ledger-cr[]"
+    newCrSelect.name="ledger_id[]"
 
     var newCrDiv=document.createElement('div');
     newCrDiv.classList.add('col-5');
@@ -949,7 +952,7 @@ $("#addCrDebitNote").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="amount[]"" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="cr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 

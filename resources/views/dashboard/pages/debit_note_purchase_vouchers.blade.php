@@ -32,8 +32,8 @@
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>
                                     <tr class="table-info text-center">
-                                        <th>Transaction ID</th>
-                                        <th>Voucher Type Identifier </th>
+                                        <th>V.no</th>
+                                        <th>Amount </th>
                                         <th>Date</th>
                                     </tr>
                                     </thead>
@@ -42,7 +42,11 @@
 
                                         <tr class="text-center">
                                             <td>{{$debitnotepurchasevoucher->transaction_no}}</td>
-                                            <td>{{$debitnotepurchasevoucher->voucher_type_identifier}}</td>
+                                            <?php $total = 0; ?>
+                                            @foreach($debitnotepurchasevoucher->transaction_entries as $transaction_entry)
+                                                <?php $total += $transaction_entry->amount; ?>
+                                            @endforeach
+                                            <td>{{ $amount=$total/2 }}</td>
                                             <td>{{$debitnotepurchasevoucher->transaction_date}}</td>
                                         </tr>
                                     @endforeach

@@ -47,9 +47,9 @@
                     <div class="col-6">
                         <div class="form-group">
                             <input type="number"
-                                   class="form-control"
-                                   name="amount[]"
-                                   id="amount"
+                                   class="form-control "
+                                   name="dr_amount[]"
+                                   id="dr_amount"
                                    placeholder="Enter Amount"
                                    autocomplete="off">
                         </div>
@@ -73,12 +73,14 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <input type="number" class="form-control" name="amount[]"
+                            <input type="number" class="form-control "  name="cr_amount[]"
                                    id="amount" placeholder="Enter Amount"  autocomplete="off">
                         </div>
                     </div>
                 </div>
-
+                @if(Session::has('message'))
+                    <p class="alert alert-danger">{{ Session::get('message') }}</p>
+                @endif
                 <div class="addCrBox " id="addCrBoxInContra">
 
                 </div>
@@ -103,6 +105,7 @@
                     </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-12">
                         <button type="submit" class="btn btn-lg btn-block btn-primary">Submit</button>

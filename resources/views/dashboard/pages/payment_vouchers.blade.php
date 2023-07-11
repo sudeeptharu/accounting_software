@@ -32,8 +32,8 @@
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>
                                     <tr class="table-info text-center">
-                                        <th>Transaction ID</th>
-                                        <th>Voucher Type Identifier </th>
+                                        <th>V.no</th>
+                                        <th>Amount </th>
                                         <th>Date</th>
                                     </tr>
                                     </thead>
@@ -41,8 +41,14 @@
                                     @foreach($paymentvouchers as $paymentvoucher)
 
                                         <tr class="text-center">
+                                            <?php $total = 0; ?>
                                             <td>{{$paymentvoucher->transaction_no}}</td>
-                                            <td>{{$paymentvoucher->voucher_type_identifier}}</td>
+                                            @foreach($paymentvoucher->transaction_entries as $transaction_entry)
+                                                <?php $total += $transaction_entry->amount; ?>
+
+                                            @endforeach
+
+                                            <td>{{ $amount=$total/2 }}</td>
                                             <td>{{$paymentvoucher->transaction_date}}</td>
                                         </tr>
                                     @endforeach

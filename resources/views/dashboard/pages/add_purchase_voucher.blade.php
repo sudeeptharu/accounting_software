@@ -10,6 +10,11 @@
 
             <form class="form-horizontal" action="{{url('purchase-voucher/save')}}" method="post" >
                 @csrf
+                <input type="hidden" name="voucher_type_identifier" value="PC" >
+
+                @if(Session::has('message'))
+                    <p class="alert alert-danger">{{ Session::get('message') }}</p>
+                @endif
                 <div class="container">
                     <div class="row">
                         <div class="col-6">
@@ -25,7 +30,6 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="voucher_type_identifier" value="PC" >
 
                     <div class="row">
                         <div class="col-1">
@@ -43,7 +47,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+                                <input type="number" class="form-control" name="cr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -63,7 +67,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <input type="number" class="form-control" name="amount[]" id="amount"placeholder="Amount"  autocomplete="off">
+                                <input type="number" class="form-control" name="dr_amount[]" id="amount"placeholder="Amount"  autocomplete="off">
                             </div>
                         </div>
                     </div>

@@ -32,7 +32,7 @@
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>
                                     <tr class="table-info text-center">
-                                        <th>Transaction ID</th>
+                                        <th>V.no</th>
                                         <th>Voucher Type Identifier </th>
                                         <th>Date</th>
                                     </tr>
