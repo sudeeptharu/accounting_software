@@ -128,34 +128,27 @@ class LedgerTypeController extends Controller
         return view('dashboard.pages.payment_vouchers',compact('paymentvouchers'));
     }
     public function VoucherSave(Request $request){
-        dd($request->toArray());
-        $cr_sum=array_sum($request->cr_amount);
-        $dr_sum=array_sum($request->dr_amount);
-        $cr_sum_Array=$request->cr_amount;
-        $dr_sum_Array=$request->dr_amount;
-        if($request->voucher_type_identifier=='CT'||'DN'||'PY'||'SL'){
-            if($cr_sum!=$dr_sum){
-                return redirect()->back()->with('message',"toal amount of cr and dr must be equal");
+        $dr_amount=0;
+        $cr_amount=0;
 
-            }else{
-                $mergedAmount = array_merge( $dr_sum_Array,$cr_sum_Array);
-            }
-        }else{
-            if($cr_sum!=$dr_sum){
-                return redirect()->back()->with('message',"toal amount of cr and dr must be equal");
+        for($i=0;$i<count($request->dc);$i++){
 
+            if($request->dc[$i]==1){
+                $dr_amount=$dr_amount+$request->amount[$i];
             }else{
-                $mergedAmount = array_merge($cr_sum_Array, $dr_sum_Array);
+                $cr_amount=$cr_amount+$request->amount[$i];
             }
         }
-
+        if($dr_amount!=$cr_amount){
+            return redirect()->back()->with('message',"toal amount of cr and dr must be equal");
+        }
         Transaction::insert([
 
-                'transaction_no'=>$request->transaction_no,
-                'transaction_date'=>$request->transaction_date,
-                'voucher_type_identifier'=>$request->voucher_type_identifier,
-                'narration'=>$request->narration,
-                'remarks'=>$request->remarks
+            'transaction_no'=>$request->transaction_no,
+            'transaction_date'=>$request->transaction_date,
+            'voucher_type_identifier'=>$request->voucher_type_identifier,
+            'narration'=>$request->narration,
+            'remarks'=>$request->remarks
         ]);
         $transaction_id=Transaction::where(['transaction_no'=>$request->transaction_no])->first();
         for($i=0; $i<count($request->dc); $i++){
@@ -165,20 +158,74 @@ class LedgerTypeController extends Controller
                     'transaction_id'=>$transaction_id->id,
                     'ledger_id'=>0,
                     'dc'=>$request->dc[$i],
-                    'amount'=>$mergedAmount[$i]
+                    'amount'=>$request->amount[$i]
                 ]);
             }else{
                 TransactionEntry::insert([
                     'transaction_id'=>$transaction_id->id,
                     'ledger_id'=>$request->ledger_id[$i],
                     'dc'=>$request->dc[$i],
-                    'amount'=>$mergedAmount[$i]
+                    'amount'=>$request->amount[$i]
                 ]);
             }
         }
         $previousurl=session()->get('previousurl');
         return redirect($previousurl);
+
     }
+//    public function journalVoucherSave(Request $request){
+//        dd($request->toArray());
+//        $cr_sum=array_sum($request->cr_amount);
+//        $dr_sum=array_sum($request->dr_amount);
+//        $cr_sum_Array=$request->cr_amount;
+//        $dr_sum_Array=$request->dr_amount;
+//        if($request->voucher_type_identifier=='CT'||'DN'||'PY'||'SL'){
+//            if($cr_sum!=$dr_sum){
+//                return redirect()->back()->with('message',"toal amount of cr and dr must be equal");
+//
+//            }else{
+//                $mergedAmount = array_merge( $dr_sum_Array,$cr_sum_Array);
+//            }
+//        }else{
+//            if($cr_sum!=$dr_sum){
+//                return redirect()->back()->with('message',"toal amount of cr and dr must be equal");
+//
+//            }else{
+//                $mergedAmount = array_merge($cr_sum_Array, $dr_sum_Array);
+//            }
+//        }
+//
+//        Transaction::insert([
+//
+//            'transaction_no'=>$request->transaction_no,
+//            'transaction_date'=>$request->transaction_date,
+//            'voucher_type_identifier'=>$request->voucher_type_identifier,
+//            'narration'=>$request->narration,
+//            'remarks'=>$request->remarks
+//        ]);
+//        $transaction_id=Transaction::where(['transaction_no'=>$request->transaction_no])->first();
+//        for($i=0; $i<count($request->dc); $i++){
+//
+//            if(!isset($request->ledger_id[$i])){
+//                TransactionEntry::insert([
+//                    'transaction_id'=>$transaction_id->id,
+//                    'ledger_id'=>0,
+//                    'dc'=>$request->dc[$i],
+//                    'amount'=>$mergedAmount[$i]
+//                ]);
+//            }else{
+//                TransactionEntry::insert([
+//                    'transaction_id'=>$transaction_id->id,
+//                    'ledger_id'=>$request->ledger_id[$i],
+//                    'dc'=>$request->dc[$i],
+//                    'amount'=>$mergedAmount[$i]
+//                ]);
+//            }
+//        }
+//        $previousurl=session()->get('previousurl');
+//        return redirect($previousurl);
+//
+//    }
 
 }
 

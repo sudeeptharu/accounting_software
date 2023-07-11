@@ -33,7 +33,7 @@
                                     <thead>
                                     <tr class="table-info text-center">
                                         <th>V.no</th>
-                                        <th>Voucher Type Identifier </th>
+                                        <th>Amount </th>
                                         <th>Date</th>
                                     </tr>
                                     </thead>
@@ -42,7 +42,11 @@
 
                                         <tr class="text-center">
                                             <td>{{$journalvoucher->transaction_no}}</td>
-                                            <td>{{$journalvoucher->voucher_type_identifier}}</td>
+                                            <?php $total = 0; ?>
+                                            @foreach($journalvoucher->transaction_entries as $transaction_entry)
+                                                <?php $total += $transaction_entry->amount; ?>
+                                            @endforeach
+                                            <td>{{ $amount=$total/2 }}</td>
                                             <td>{{$journalvoucher->transaction_date}}</td>
                                         </tr>
                                     @endforeach

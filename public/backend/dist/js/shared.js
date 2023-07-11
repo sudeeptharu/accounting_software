@@ -393,7 +393,7 @@ $("#addCrContra").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control cr_amount" name="cr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control cr_amount" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -550,7 +550,7 @@ $("#addCrPayment").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="cr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -632,7 +632,7 @@ $("#addDrPurchase").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="dr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -713,7 +713,7 @@ $("#addDrReceipt").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="dr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -793,7 +793,7 @@ $("#addCrSales").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="cr_amount[]"" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="amount[]"" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -872,7 +872,7 @@ $("#addDrNoteSales").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="dr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 
@@ -952,7 +952,7 @@ $("#addCrDebitNote").on("click", function () {
     newAmountDiv.classList.add('col-5');
     newAmountDiv.innerHTML = `
         <div class="form-group">
-            <input type="number" class="form-control" name="cr_amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
+            <input type="number" class="form-control" name="amount[]" id="amount" placeholder="Enter Amount"  autocomplete="off">
         </div>
     `;
 

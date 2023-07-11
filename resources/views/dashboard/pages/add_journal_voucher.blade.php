@@ -11,7 +11,9 @@
             <form class="form-horizontal"  method="post" action="{{url('journal-voucher/save')}}">
                 @csrf
                 <input type="hidden" name="voucher_type_identifier" value="JV" >
-
+                @if(Session::has('message'))
+                    <p class="alert alert-danger">{{ Session::get('message') }}</p>
+                @endif
                 <div class="container">
                     <div class="row">
                         <div class="col-6">

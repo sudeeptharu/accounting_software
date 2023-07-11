@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <input type="number"
                                    class="form-control "
-                                   name="dr_amount[]"
+                                   name="amount[]"
                                    id="dr_amount"
                                    placeholder="Enter Amount"
                                    autocomplete="off">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <input type="number" class="form-control "  name="cr_amount[]"
+                            <input type="number" class="form-control "  name="amount[]"
                                    id="amount" placeholder="Enter Amount"  autocomplete="off">
                         </div>
                     </div>
