@@ -19,7 +19,7 @@
             </div>
         </section>
         <section class="content">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -30,20 +30,22 @@
                             </div>
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-striped">
-                                    <thead>
+                                    <th>
                                     <tr class="table-info text-center">
                                         <th>Title</th>
                                         <th>Group </th>
+                                    <th>Opening Amount</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     @foreach($ledgers as $ledger)
+                                    @php($openingBalance = $ledger->openingBalance())
 
                                         <tr class="text-center">
                                             <td>{{$ledger->title}}</td>
                                             <td>{{$ledger->group_identifier}}</td>
+                                            <td>{{$openingBalance}} </td>
                                             <td>
 
                                                 <div class="btn-group">
@@ -51,6 +53,7 @@
                                                        data-id="{{$ledger->id}}"
                                                        data-title="{{$ledger->title}}"
                                                        data-group_identifier="{{$ledger->group_identifier}}"
+                                                       data-opening_balance="{{ $openingBalance }}"
                                                        class="btn-primary btn-sm" title="Edit"><span class="fa fa-edit"></span></a>
                                                     <a href="{{url('/role/delete/'.$ledger->id )}}"
                                                        class="btn btn-danger btn-sm" title="Delete"><span class="fa fa-trash"></span>

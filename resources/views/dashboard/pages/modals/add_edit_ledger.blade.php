@@ -33,6 +33,12 @@
                         </select>
                     </div>
                 </div>
+                <div class="col-12">
+                    <div class="form-group row">
+                        <label for="openingBalance">Opening Balance </label>
+                        <input type="number" class="form-control"  name="openingBalance" id="openingBalance" placeholder="Enter title" autocomplete="off">
+                    </div>
+                </div>
 
 
 

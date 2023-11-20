@@ -35,6 +35,7 @@ Route::put('/ledger/update',[LedgerController::class,'update']);
 Route::get('role/delete/{id}',[LedgerController::class,'destroy']);
 Route::get('/ledger/group_identifier',[LedgerController::class,'group_identifier']);
 Route::get('/ledger/classification_identifier',[LedgerController::class,'classification_identifier']);
+Route::get('/assetsAndLiabilities',[LedgerController::class,'assetsAndLiabilities']);
 
 Route::get('ledger-group',[LedgerGroupController::class,'index']);
 Route::post('/ledger-group/save',[LedgerGroupController::class,'store']);

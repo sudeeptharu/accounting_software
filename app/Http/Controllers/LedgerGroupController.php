@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LedgerClassification;
 use App\Models\LedgerGroup;
 use App\Models\LedgerType;
+use App\Models\TransactionEntry;
 use App\Models\VoucherType;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,25 @@ class LedgerGroupController extends Controller
      */
     public function index()
     {
+        $ledgerGroups=LedgerGroup::where('classification_identifier','ASSETS')->get();
+        $groups=[];
+        foreach($ledgerGroups as $ledgerGroup){
+            $groups[]=$ledgerGroup->allDescendants->toArray();
+        }
+
+
+        $liabilitiesGroups=LedgerGroup::where('classification_identifier','LIABILITIES')->get();
+        $liabilities=[];
+        foreach($liabilitiesGroups as $ledgerGroup){
+            $liabilities[]=$ledgerGroup->allDescendants->toArray();
+        }
+        $totalAssets=TransactionEntry::where('dc','0')->sum('amount');
+        $totalLiabilities=TransactionEntry::where('dc',0)->sum('amount');
+//        dd($totalLiabilities);
+//        dd($liabilities);
+//        dd($groups);
+        return view('dashboard.pages.ledger_group',compact('groups','liabilities','totalAssets','totalLiabilities'));
+
         $ledger_classifications=LedgerClassification::all();
         $ledger_types=LedgerType::all();
         $voucher_types=VoucherType::all();

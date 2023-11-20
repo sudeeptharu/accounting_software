@@ -34,4 +34,20 @@ class LedgerGroup extends Model
     {
         return $this->belongsTo(LedgerType::class, 'ledger_type','identifier');
     }
+
+    public function endNodeLedgers()
+    {
+        return $this->hasMany(Ledger::class, 'group_identifier', 'identifier')
+            ->whereDoesntHave('children');
+    }
+    public function allDescendants()
+    {
+        return $this->children()->with('allDescendants','ledgers',);
+    }
+
+    public static function amount($ledger_id)
+    {
+        $amt=TransactionEntry::where('ledger_id',$ledger_id)->first();
+        return $amt->amount;
+    }
 }

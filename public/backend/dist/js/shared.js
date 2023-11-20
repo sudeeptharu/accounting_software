@@ -109,10 +109,15 @@ $(function () {
         const link = $(e.relatedTarget);
         const id = link.data("id");
         const title = link.data("title");
+
+        const openingBalance = link.data("opening_balance");
+        console.log(title)
+        console.log(openingBalance)
         const group_identifier = link.data("group_identifier");
 
         modal.find(".modal-body #id").val(id);
         modal.find(".modal-body #title").val(title);
+        modal.find(".modal-body #openingBalance").val(openingBalance);
         modal.find(".modal-body #group_identifier").html("");
 
         $.ajax({

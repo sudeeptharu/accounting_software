@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LedgerSeeder::class);
         $this->call(VoucherTypeSeeder::class);
         $this->call(LedgerTypeSeeder::class);
-        //$this->call(TransactionSeeder::class);
+//        $this->call(TransactionSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
